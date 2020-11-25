@@ -19,7 +19,7 @@ public class VehicleRepository {
 
     public void createVehicle (Vehicle vehicle){
         String sql = "INSERT INTO vehicle (client_id, reg_no, odo, type, manufacturer," +
-                "model, year, fuel, kw, active) VALUES (:client_no, :reg_no, :odo," +
+                "model, year, fuel, kw, active) VALUES (:client_id, :reg_no, :odo, :type, " +
                 ":manufacturer, :model, :year, :fuel, :kw, :active )";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("client_id", vehicle.getClientId());

@@ -31,14 +31,14 @@ public class VehstoryController {
         vehicleService.createVehicle(vehicle);
     }
 
-    @GetMapping("myVehicle")
-    public List getMyVehicle(){
-        return vehicleService.getMyVehicle();
-    }
+//    @GetMapping("myVehicle")
+//    public List getMyVehicle(){
+    //    return vehicleService.getMyVehicle();
+    //}
 
     @PutMapping("deleteVehicle")
     public void deleteVehicle(BigInteger id){
-        vehicleService.deleteVehicle(id);
+   //     vehicleService.deleteVehicle(id);
     }
 
     @GetMapping("serviceList")
