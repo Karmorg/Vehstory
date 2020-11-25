@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.Client;
+import com.example.demo.Vehicle;
 import com.example.demo.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

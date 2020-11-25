@@ -131,6 +131,9 @@
         </column>
     </addColumn>
 </changeSet>
+    <changeSet id="4" author="Kadri">
+        <renameColumn tableName="vehicle" oldColumnName="reg_No" newColumnName="reg_no"/>
+    </changeSet>
 
 
 </databaseChangeLog> 

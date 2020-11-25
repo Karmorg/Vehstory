@@ -1,9 +1,21 @@
-package com.example.demo.controller;
+package com.example.demo;
 
 import java.math.BigInteger;
 
 public class Vehicle {
-    private BigInteger id;
+    public BigInteger getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(BigInteger client_id) {
+        this.client_id = client_id;
+    }
+
+    public Vehicle(BigInteger client_id) {
+        this.client_id = client_id;
+    }
+
+    private BigInteger client_id;
     private String regNo;
     private BigInteger odo;
     private String type;
@@ -12,9 +24,9 @@ public class Vehicle {
     private String year;
     private String fuel;
     private BigInteger kW;
+    private Boolean active;
 
     public Vehicle(BigInteger id, String regNo, BigInteger odo, String type, String manufactorer, String model, String year, String fuel, BigInteger kW, Boolean active) {
-        this.id = id;
         this.regNo = regNo;
         this.odo = odo;
         this.type = type;
@@ -26,13 +38,7 @@ public class Vehicle {
         this.active = active;
     }
 
-    public BigInteger getId() {
-        return id;
-    }
 
-    public void setId(BigInteger id) {
-        this.id = id;
-    }
 
     public String getRegNo() {
         return regNo;
@@ -106,6 +112,6 @@ public class Vehicle {
         this.active = active;
     }
 
-    private Boolean active;
+
 
 }
