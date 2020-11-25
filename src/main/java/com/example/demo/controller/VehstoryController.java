@@ -17,4 +17,10 @@ public class VehstoryController {
     public void createClient (@RequestBody Client client){
         clientService.createClient(client.getName(), client.geteMail());
     }
+
+    @PostMapping("addVehicle")
+    public void createVechile(@RequestBody Vehicle vehicle){
+        vehicleService.createVehicle(vehicle.getRegNo(), vehicle.getOdo(), vehicle.getType(), vehicle.getManufactorer(), vehicle.getModel(), vehicle.getYear(), vehicle.getFuel(), vehicle.getkW());
+    }
+
 }

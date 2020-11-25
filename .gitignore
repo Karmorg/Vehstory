@@ -31,5 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
-/src/main/resources/application-y.properties
+src/main/resources/db/changelog/application-k.properties
+/src/main/resources/application-k.properties
 /src/main/resources/application-dev.properties

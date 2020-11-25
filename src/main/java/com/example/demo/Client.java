@@ -4,10 +4,11 @@ public class Client {
     private String name;
     private String eMail;
 
+
     public Client(String name, String eMail) {
         this.name = name;
         this.eMail = eMail;
-    }
+            }
 
     public String getName() {
         return name;
