@@ -114,6 +114,22 @@
 
         </createTable>
     </changeSet>
-
+<changeSet id="3" author="Ülle">
+    <addColumn tableName="client">
+        <column name="active" type="boolean">
+            <constraints nullable="false"/>
+        </column>
+    </addColumn>
+    <addColumn tableName="vehicle">
+        <column name="active" type="boolean">
+            <constraints nullable="false"/>
+        </column>
+    </addColumn>
+    <addColumn tableName="service_list">
+        <column name="active" type="boolean">
+            <constraints nullable="false"/>
+        </column>
+    </addColumn>
+</changeSet>
 
 </databaseChangeLog> 
