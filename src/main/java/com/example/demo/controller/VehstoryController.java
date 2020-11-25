@@ -24,4 +24,5 @@ public class VehstoryController {
         vehicleService.createVehicle(vehicle.getRegNo(), vehicle.getOdo(), vehicle.getType(), vehicle.getManufactorer(), vehicle.getModel(), vehicle.getYear(), vehicle.getFuel(), vehicle.getkW());
     }
 
+
 }

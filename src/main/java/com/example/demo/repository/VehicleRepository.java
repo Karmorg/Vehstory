@@ -19,7 +19,7 @@ public class VehicleRepository {
                 "model, year, fuel, kw, active) VALUES (:client_no, :reg_no, :odo," +
                 ":manufacturer, :model, :year, :fuel, :kw, :active )";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("client_id", vehicle.getClient_id());
+        paramMap.put("client_id", vehicle.getClientId());
         paramMap.put("reg_no", vehicle.getRegNo());
         paramMap.put("odo", vehicle.getOdo());
         paramMap.put("manufacturer", vehicle.getManufactorer());

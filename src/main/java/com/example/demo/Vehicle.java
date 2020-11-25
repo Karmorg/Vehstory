@@ -3,19 +3,19 @@ package com.example.demo;
 import java.math.BigInteger;
 
 public class Vehicle {
-    public BigInteger getClient_id() {
-        return client_id;
+    public BigInteger getClientId() {
+        return clientId;
     }
 
-    public void setClient_id(BigInteger client_id) {
-        this.client_id = client_id;
+    public void setClientId(BigInteger clientId) {
+        this.clientId = clientId;
     }
 
     public Vehicle(BigInteger client_id) {
-        this.client_id = client_id;
+        this.clientId = client_id;
     }
 
-    private BigInteger client_id;
+    private BigInteger clientId;
     private String regNo;
     private BigInteger odo;
     private String type;
