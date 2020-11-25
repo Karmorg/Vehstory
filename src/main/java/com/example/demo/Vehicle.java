@@ -26,7 +26,9 @@ public class Vehicle {
     private BigInteger kW;
     private Boolean active;
 
-    public Vehicle(BigInteger id, String regNo, BigInteger odo, String type, String manufactorer, String model, String year, String fuel, BigInteger kW, Boolean active) {
+    public Vehicle(BigInteger id, String regNo, BigInteger odo,
+                   String type, String manufactorer, String model, String year,
+                   String fuel, BigInteger kW, Boolean active) {
         this.regNo = regNo;
         this.odo = odo;
         this.type = type;
