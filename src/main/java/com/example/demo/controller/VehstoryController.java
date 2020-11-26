@@ -37,10 +37,10 @@ public class VehstoryController {
         vehicleService.createVehicle(vehicle);
     }
 
-//    @GetMapping("myVehicle")
-//    public List getMyVehicle(){
-    //    return vehicleService.getMyVehicle();
-    //}
+    @GetMapping("myVehicle")
+    public List<Vehicle> getMyVehicle(BigInteger clientID){
+       return vehicleService.getMyVehicle(clientID);
+    }
 
     @PutMapping("deleteVehicle")
     public void deleteVehicle(BigInteger id){

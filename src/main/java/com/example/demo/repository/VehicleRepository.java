@@ -35,9 +35,9 @@ public class VehicleRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public List<Vehicle> getMyVehicles (BigInteger clientID){
-        String sql = "SELECT reg_no, odo, type, manufacturer," +
-                "model, year, fuel, kw FROM vehicle WHERE client_id=:clientId" +
+    public List<Vehicle> getMyVehicles(BigInteger clientID){
+        String sql = "SELECT client_id, reg_no, odo, type, manufacturer," +
+                "model, year, fuel, kw, active FROM vehicle WHERE client_id=:clientId " +
                 "AND active = :active";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("clientId", clientID);
