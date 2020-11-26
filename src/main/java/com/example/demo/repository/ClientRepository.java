@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,4 +22,14 @@ public class ClientRepository {
         paramMap.put("active", true);
         jdbcTemplate.update(sql, paramMap);
     }
+
+    public void updateClientStatus(BigInteger id){
+        String sql = "UPDATE client SET active=:false WHERE id=:clientID";
+        Map<String, Object> paramMap=new HashMap<>();
+        paramMap.put("clientID", id);
+        paramMap.put("false", false);
+        jdbcTemplate.update(sql,paramMap);
+    }
+
+
 }
