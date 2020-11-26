@@ -4,7 +4,10 @@ import com.example.demo.Vehicle;
 import com.example.demo.VehicleRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
@@ -18,7 +21,7 @@ public class VehicleRepository {
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void createVehicle (Vehicle vehicle){
+    public BigInteger createVehicle (Vehicle vehicle){
         String sql = "INSERT INTO vehicle (client_id, reg_no, odo, type, manufacturer," +
                 "model, year, fuel, kw, active) VALUES (:client_id, :reg_no, :odo, :type, " +
                 ":manufacturer, :model, :year, :fuel, :kw, :active )";
@@ -33,7 +36,10 @@ public class VehicleRepository {
         paramMap.put("fuel", vehicle.getFuel());
         paramMap.put("kw", vehicle.getkW());
         paramMap.put("active", vehicle.getActive());
-        jdbcTemplate.update(sql, paramMap);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(sql, new MapSqlParameterSource(paramMap), keyHolder);
+        return (BigInteger) keyHolder.getKeys().get("id");
+
     }
 
     public List<Vehicle> getMyVehicles(BigInteger clientID){
