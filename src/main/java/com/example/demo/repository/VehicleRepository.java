@@ -50,6 +50,7 @@ public class VehicleRepository {
         String sql = "UPDATE vehicle SET active=:false WHERE id=:autoId";
         Map<String, Object> paramMap=new HashMap<>();
         paramMap.put("autoId", id);
+        paramMap.put("false", false);
         jdbcTemplate.update(sql,paramMap);
     }
 }
