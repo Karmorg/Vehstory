@@ -29,13 +29,20 @@ public class SelectedServiceRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-
     public List<SelectedService> getSelectedService (BigInteger vehicleId){
         String sql= "SELECT vehicle_id, service_id, p_unit, p_value, comment, active " +
                 "FROM selected_service WHERE vehicle_id = :vehicleID AND active = :active";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("vehicleID", vehicleId);
         paramMap.put("active", true);
+        List<SelectedService> selectedServicesList =  jdbcTemplate.query(sql,paramMap, new SelectedServiceRowMapper());
+        return  selectedServicesList;
+    }
+    public List<SelectedService> getVehicleServiceList (BigInteger vehicleId){
+        String sql= "SELECT vehicle_id, service_id, p_unit, p_value, comment, active " +
+                "FROM selected_service WHERE vehicle_id = :vehicleID";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("vehicleID", vehicleId);
         List<SelectedService> selectedServicesList =  jdbcTemplate.query(sql,paramMap, new SelectedServiceRowMapper());
         return  selectedServicesList;
     }
