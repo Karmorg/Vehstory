@@ -46,4 +46,11 @@ public class SelectedServiceRepository {
         List<SelectedService> selectedServicesList =  jdbcTemplate.query(sql,paramMap, new SelectedServiceRowMapper());
         return  selectedServicesList;
     }
+    public void updateSelectedService (SelectedService selectedService){
+        String sql="UPDATE selected_service SET p_unit, p_value, comment, active WHERE vehicle_id = :vehicleID AND active = :active";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("vehicleID", selectedService.getVehicleId());
+        paramMap.put("active", true);
+        jdbcTemplate.update(sql, paramMap);
+    }
 }

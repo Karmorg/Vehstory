@@ -60,4 +60,8 @@ public class VehstoryController {
     public List<SelectedService> getVehicleServiceList (@RequestBody BigInteger vehicleId){
         return selectedServiceService.getVehicleServiceList(vehicleId);
     }
+    @PutMapping ("updateSelectedService")
+    public void updateSelectedServise (@RequestBody List<SelectedService> selectedServiceList){
+        selectedServiceService.updateSelectedService(selectedServiceList);
+    }
 }
