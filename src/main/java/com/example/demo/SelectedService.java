@@ -10,6 +10,15 @@ public class SelectedService {
     private String comment;
     private boolean active;
 
+    public SelectedService(BigInteger vehicleId, BigInteger serviceId, String pUnit,
+                           BigInteger pValue, String comment, boolean active) {
+        this.vehicleId = vehicleId;
+        this.serviceId = serviceId;
+        this.pUnit = pUnit;
+        this.pValue = pValue;
+        this.comment = comment;
+        this.active = active;
+    }
 
     public BigInteger getVehicleId() {
         return vehicleId;

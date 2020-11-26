@@ -38,7 +38,7 @@ public class VehicleRepository {
     public List<Vehicle> getMyVehicles (BigInteger clientID){
         String sql = "SELECT reg_no, odo, type, manufacturer," +
                 "model, year, fuel, kw FROM vehicle WHERE client_id=:clientId" +
-                ", active = :active";
+                "AND active = :active";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("clientId", clientID);
         paramMap.put("active", true);

@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.Client;
+import com.example.demo.SelectedService;
 import com.example.demo.Vehicle;
+import com.example.demo.repository.SelectedServiceRepository;
 import com.example.demo.service.ClientService;
+import com.example.demo.service.SelectedServiceService;
 import com.example.demo.service.ServiceService;
 import com.example.demo.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,9 @@ public class VehstoryController {
     private VehicleService vehicleService;
     @Autowired
     private ServiceService serviceService;
+
+    @Autowired
+    private SelectedServiceService selectedServiceService;
 
     @PostMapping ("register")
     public void createClient (@RequestBody Client client){
@@ -46,5 +52,8 @@ public class VehstoryController {
         return serviceService.getServiceList();
     }
 
-
+    @GetMapping ("SelectedServices")
+    public List<SelectedService> getSelectedServices (@RequestBody BigInteger vehicleId){
+        return selectedServiceService.getSelectedService(vehicleId);
+    }
 }
