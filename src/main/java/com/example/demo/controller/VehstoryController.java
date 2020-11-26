@@ -56,4 +56,8 @@ public class VehstoryController {
     public List<SelectedService> getSelectedServices(@RequestBody BigInteger vehicleId) {
         return selectedServiceService.getSelectedService(vehicleId);
     }
+    @GetMapping ("VehicleServiceList")
+    public List<SelectedService> getVehicleServiceList (@RequestBody BigInteger vehicleId){
+        return selectedServiceService.getVehicleServiceList(vehicleId);
+    }
 }

@@ -15,6 +15,10 @@ public class SelectedServiceService {
 
     public List<com.example.demo.SelectedService> getSelectedService(BigInteger vehicleId){
         return selectedServiceRepository.getSelectedService(vehicleId);
+    }
+
+    public List<com.example.demo.SelectedService> getVehicleServiceList(BigInteger vehicleId){
+        return selectedServiceRepository.getVehicleServiceList(vehicleId);
 
     }
 }
