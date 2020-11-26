@@ -24,6 +24,7 @@ public class SelectedServiceRepository {
         paramMap.put("vehicleId", selectedService.getVehicleId());
         paramMap.put("serviceId", selectedService.getServiceId());
         paramMap.put("pUnit", selectedService.getpUnit());
+        paramMap.put("pValue", selectedService.getpValue());
         paramMap.put("comment", selectedService.getComment());
         paramMap.put("active", selectedService.isActive());
         jdbcTemplate.update(sql, paramMap);
