@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
+import com.example.demo.SelectedService;
 import com.example.demo.Vehicle;
+import com.example.demo.repository.SelectedServiceRepository;
+import com.example.demo.repository.ServiceRepository;
 import com.example.demo.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,17 +16,29 @@ public class VehicleService {
 
     @Autowired
     private VehicleRepository vehicleRepository;
+    @Autowired
+    private SelectedServiceRepository selectedServiceRepository;
+    @Autowired
+    private ServiceRepository serviceRepository;
 
 
     public void createVehicle(Vehicle vehicle) {
-        vehicleRepository.createVehicle(vehicle);
+        BigInteger vehId = vehicleRepository.createVehicle(vehicle);
+        List<BigInteger> serviceIdList = serviceRepository.serviceList();
+        for (BigInteger s : serviceIdList
+        ) {
+            SelectedService selectedService = new SelectedService(vehId, s, null, null, null, false);
+            selectedServiceRepository.insertSelectedService(selectedService);
+        }
+
+
     }
 
     public List<Vehicle> getMyVehicle(BigInteger clientID) {
         return vehicleRepository.getMyVehicles(clientID);
     }
 
-    public void deleteVehicle(BigInteger id){
+    public void deleteVehicle(BigInteger id) {
         vehicleRepository.updateVehicleStatus(id);
     }
 
