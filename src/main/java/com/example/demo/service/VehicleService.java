@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.OneService;
 import com.example.demo.SelectedService;
 import com.example.demo.Vehicle;
 import com.example.demo.repository.SelectedServiceRepository;
@@ -24,10 +25,10 @@ public class VehicleService {
 
     public void createVehicle(Vehicle vehicle) {
         BigInteger vehId = vehicleRepository.createVehicle(vehicle);
-        List<BigInteger> serviceIdList = serviceRepository.serviceList();
-        for (BigInteger s : serviceIdList
+        List<OneService> serviceIdList = serviceRepository.serviceList();
+        for (OneService s : serviceIdList
         ) {
-            SelectedService selectedService = new SelectedService(vehId, s, null, null, null, false);
+            SelectedService selectedService = new SelectedService(vehId, s.getId(), null, null, null, false);
             selectedServiceRepository.insertSelectedService(selectedService);
         }
 
