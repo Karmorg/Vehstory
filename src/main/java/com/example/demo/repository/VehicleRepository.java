@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import com.example.demo.Vehicle;
 import com.example.demo.VehicleRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -43,5 +44,12 @@ public class VehicleRepository {
         paramMap.put("clientId", clientID);
         paramMap.put("active", true);
         return jdbcTemplate.query(sql,paramMap,new VehicleRowMapper());
+    }
+
+    public void updateVehicleStatus(BigInteger id){
+        String sql = "UPDATE vehicle SET active=:false WHERE id=:autoId";
+        Map<String, Object> paramMap=new HashMap<>();
+        paramMap.put("autoId", id);
+        jdbcTemplate.update(sql,paramMap);
     }
 }

@@ -27,33 +27,33 @@ public class VehstoryController {
     @Autowired
     private SelectedServiceService selectedServiceService;
 
-    @PostMapping ("register")
-    public void createClient (@RequestBody Client client){
+    @PostMapping("register")
+    public void createClient(@RequestBody Client client) {
         clientService.createClient(client.getName(), client.geteMail());
     }
 
     @PostMapping("addVehicle")
-    public void createVechile(@RequestBody Vehicle vehicle){
+    public void createVechile(@RequestBody Vehicle vehicle) {
         vehicleService.createVehicle(vehicle);
     }
 
     @GetMapping("myVehicle")
-    public List<Vehicle> getMyVehicle(BigInteger clientID){
-       return vehicleService.getMyVehicle(clientID);
+    public List<Vehicle> getMyVehicle(BigInteger clientID) {
+        return vehicleService.getMyVehicle(clientID);
     }
 
     @PutMapping("deleteVehicle")
-    public void deleteVehicle(BigInteger id){
-   //     vehicleService.deleteVehicle(id);
+    public void deleteVehicle(BigInteger id) {
+        vehicleService.deleteVehicle(id);
     }
 
     @GetMapping("serviceList")
-    public List getServiceList(){
+    public List getServiceList() {
         return serviceService.getServiceList();
     }
 
-    @GetMapping ("SelectedServices")
-    public List<SelectedService> getSelectedServices (@RequestBody BigInteger vehicleId){
+    @GetMapping("SelectedServices")
+    public List<SelectedService> getSelectedServices(@RequestBody BigInteger vehicleId) {
         return selectedServiceService.getSelectedService(vehicleId);
     }
 }

@@ -23,4 +23,8 @@ public class VehicleService {
         return vehicleRepository.getMyVehicles(clientID);
     }
 
+    public void deleteVehicle(BigInteger id){
+        vehicleRepository.updateVehicleStatus(id);
+    }
+
 }
