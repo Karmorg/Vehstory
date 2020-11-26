@@ -60,6 +60,11 @@ public class VehstoryController {
     public List<SelectedService> getVehicleServiceList (@RequestBody BigInteger vehicleId){
         return selectedServiceService.getVehicleServiceList(vehicleId);
     }
+
+    @PutMapping("deleteClient")
+    public void deleteClient(BigInteger id){
+        clientService.deleteClient(id);
+    }
     @PutMapping ("updateSelectedService")
     public void updateSelectedServise (@RequestBody List<SelectedService> selectedServiceList){
         selectedServiceService.updateSelectedService(selectedServiceList);
