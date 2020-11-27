@@ -1,10 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.Client;
-import com.example.demo.NewOdo;
-import com.example.demo.SelectedService;
-import com.example.demo.Vehicle;
-import com.example.demo.repository.SelectedServiceRepository;
+import com.example.demo.*;
 import com.example.demo.service.ClientService;
 import com.example.demo.service.SelectedServiceService;
 import com.example.demo.service.ServiceService;
@@ -64,6 +60,7 @@ public class VehstoryController {
         vehicleService.deleteVehicle(id);
     }
 
+    @CrossOrigin
     @GetMapping("serviceList")
     public List getServiceList() {
         return serviceService.getServiceList();
@@ -73,22 +70,24 @@ public class VehstoryController {
     public List<SelectedService> getSelectedServices(@RequestBody BigInteger vehicleId) {
         return selectedServiceService.getSelectedService(vehicleId);
     }
-    @GetMapping ("VehicleServiceList")
-    public List<SelectedService> getVehicleServiceList (@RequestBody BigInteger vehicleId){
+
+    @GetMapping("VehicleServiceList")
+    public List<SelectedService> getVehicleServiceList(@RequestBody BigInteger vehicleId) {
         return selectedServiceService.getVehicleServiceList(vehicleId);
     }
 
     @PutMapping("deleteClient")
-    public void deleteClient(BigInteger id){
+    public void deleteClient(BigInteger id) {
         clientService.deleteClient(id);
     }
 
     @PutMapping("deleteService")
-    public void deleteService(BigInteger id){
-        serviceService.deleteService(id);
+    public void deleteService(@RequestBody OneService oneService) {
+        serviceService.deleteService(oneService);
     }
-    @PutMapping ("updateSelectedService")
-    public void updateSelectedServise (@RequestBody List<SelectedService> selectedServiceList){
+
+    @PutMapping("updateSelectedService")
+    public void updateSelectedService(@RequestBody List<SelectedService> selectedServiceList) {
         selectedServiceService.updateSelectedService(selectedServiceList);
     }
 }

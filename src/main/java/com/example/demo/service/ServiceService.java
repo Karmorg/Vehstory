@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.repository.SelectedServiceRepository;
+import com.example.demo.OneService;
 import com.example.demo.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +13,12 @@ public class ServiceService {
     @Autowired
     private ServiceRepository serviceRepository;
 
-    public List getServiceList(){
+    public List getServiceList() {
         return serviceRepository.serviceList();
     }
 
-    public void deleteService(BigInteger id){
-        serviceRepository.updateServiceStatus(id);
+    public void deleteService(OneService oneService) {
+        serviceRepository.updateServiceStatus(oneService);
     }
 
 

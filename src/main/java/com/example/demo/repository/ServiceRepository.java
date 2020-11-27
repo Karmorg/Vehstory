@@ -24,10 +24,10 @@ public class ServiceRepository {
         return serviceList;
 
     }
-    public void updateServiceStatus(BigInteger id){
+    public void updateServiceStatus(OneService oneService){
         String sql = "UPDATE service_list SET active=:false WHERE id=:serviceID";
         Map<String, Object> paramMap=new HashMap<>();
-        paramMap.put("serviceID", id);
+        paramMap.put("serviceID", oneService.getId());
         paramMap.put("false", false);
         jdbcTemplate.update(sql,paramMap);
     }
