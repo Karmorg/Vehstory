@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.Client;
+import com.example.demo.NewOdo;
 import com.example.demo.SelectedService;
 import com.example.demo.Vehicle;
 import com.example.demo.repository.SelectedServiceRepository;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class VehstoryController {
@@ -27,6 +29,7 @@ public class VehstoryController {
     @Autowired
     private SelectedServiceService selectedServiceService;
 
+    @CrossOrigin
     @PostMapping("register")
     public void createClient(@RequestBody Client client) {
         clientService.createClient(client.getName(), client.geteMail());
@@ -37,9 +40,21 @@ public class VehstoryController {
         vehicleService.createVehicle(vehicle);
     }
 
+    @CrossOrigin
+    @GetMapping("allVehicles")
+    public List<Vehicle> getMyVehicle() {
+        return vehicleService.getAllVehicles();
+    }
+
     @GetMapping("myVehicle")
     public List<Vehicle> getMyVehicle(BigInteger clientID) {
         return vehicleService.getMyVehicle(clientID);
+    }
+
+    @CrossOrigin
+    @PutMapping("updateOdo")
+    public void updateOdo (@RequestBody NewOdo newOdo){
+        vehicleService.updateOdo(newOdo);
     }
 
     @PutMapping("deleteVehicle")

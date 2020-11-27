@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.NewOdo;
 import com.example.demo.Vehicle;
 import com.example.demo.VehicleRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,19 @@ public class VehicleRepository {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("autoId", id);
         paramMap.put("false", false);
+        jdbcTemplate.update(sql, paramMap);
+    }
+
+    public List<Vehicle> getAllVehicles() {
+        String sql = "SELECT * FROM vehicle";
+        return jdbcTemplate.query(sql, new VehicleRowMapper());
+    }
+
+    public void updateOdo(NewOdo newOdo){
+        String sql = "UPDATE vehicle SET odo = :odo WHERE id = :id";
+        Map<String, BigInteger> paramMap = new HashMap<>();
+        paramMap.put("id", newOdo.getVehId());
+        paramMap.put("odo", newOdo.getNewOdo());
         jdbcTemplate.update(sql, paramMap);
     }
 }
