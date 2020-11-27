@@ -3,18 +3,8 @@ package com.example.demo;
 import java.math.BigInteger;
 
 public class Vehicle {
-    public BigInteger getClientId() {
-        return clientId;
-    }
 
-    public void setClientId(BigInteger clientId) {
-        this.clientId = clientId;
-    }
-
-    public Vehicle(BigInteger client_id) {
-        this.clientId = client_id;
-    }
-
+    private  BigInteger vehId;
     private BigInteger clientId;
     private String regNo;
     private BigInteger odo;
@@ -26,9 +16,11 @@ public class Vehicle {
     private BigInteger kW;
     private Boolean active;
 
-    public Vehicle(BigInteger id, String regNo, BigInteger odo,
-                   String type, String manufactorer, String model, String year,
-                   String fuel, BigInteger kW, Boolean active) {
+    public Vehicle(BigInteger vehId, BigInteger clientId, String regNo,
+                   BigInteger odo, String type, String manufactorer, String model,
+                   String year, String fuel, BigInteger kW, Boolean active) {
+        this.vehId = vehId;
+        this.clientId = clientId;
         this.regNo = regNo;
         this.odo = odo;
         this.type = type;
@@ -40,7 +32,21 @@ public class Vehicle {
         this.active = active;
     }
 
+    public BigInteger getVehId() {
+        return vehId;
+    }
 
+    public void setVehId(BigInteger vehId) {
+        this.vehId = vehId;
+    }
+
+    public BigInteger getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(BigInteger clientId) {
+        this.clientId = clientId;
+    }
 
     public String getRegNo() {
         return regNo;
@@ -113,7 +119,4 @@ public class Vehicle {
     public void setActive(Boolean active) {
         this.active = active;
     }
-
-
-
 }
