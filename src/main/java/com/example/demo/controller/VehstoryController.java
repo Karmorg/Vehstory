@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigInteger;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class VehstoryController {
+
 
     @Autowired
     private ClientService clientService;
@@ -64,6 +66,11 @@ public class VehstoryController {
     @PutMapping("deleteClient")
     public void deleteClient(BigInteger id){
         clientService.deleteClient(id);
+    }
+
+    @PutMapping("deleteService")
+    public void deleteService(BigInteger id){
+        serviceService.deleteService(id);
     }
     @PutMapping ("updateSelectedService")
     public void updateSelectedServise (@RequestBody List<SelectedService> selectedServiceList){

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,13 @@ public class ServiceRepository {
         List<OneService> serviceList=jdbcTemplate.query(sql,paramMap, new OneServiceRowMapper());
         return serviceList;
 
+    }
+    public void updateServiceStatus(BigInteger id){
+        String sql = "UPDATE service_list SET active=:false WHERE id=:serviceID";
+        Map<String, Object> paramMap=new HashMap<>();
+        paramMap.put("serviceID", id);
+        paramMap.put("false", false);
+        jdbcTemplate.update(sql,paramMap);
     }
 
 
