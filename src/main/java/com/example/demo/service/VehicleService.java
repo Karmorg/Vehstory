@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.NewOdo;
 import com.example.demo.OneService;
 import com.example.demo.SelectedService;
 import com.example.demo.Vehicle;
@@ -43,4 +44,11 @@ public class VehicleService {
         vehicleRepository.updateVehicleStatus(id);
     }
 
+    public List<Vehicle> getAllVehicles() {
+        return vehicleRepository.getAllVehicles();
+    }
+
+    public void updateOdo(NewOdo newOdo) {
+        vehicleRepository.updateOdo(newOdo);
+    }
 }
