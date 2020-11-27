@@ -12,10 +12,11 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public void createClient (String name, String eMail){
+    public void createClient(String name, String eMail) {
         clientRepository.createClient(name, eMail);
     }
-    public void deleteClient(BigInteger id){
+
+    public void deleteClient(BigInteger id) {
         clientRepository.updateClientStatus(id);
     }
 
