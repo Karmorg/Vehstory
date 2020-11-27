@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.Client;
-import com.example.demo.NewOdo;
-import com.example.demo.SelectedService;
-import com.example.demo.Vehicle;
+import com.example.demo.*;
 import com.example.demo.service.ClientService;
 import com.example.demo.service.SelectedServiceService;
 import com.example.demo.service.ServiceService;
@@ -85,8 +82,8 @@ public class VehstoryController {
     }
 
     @PutMapping("deleteService")
-    public void deleteService(@RequestBody BigInteger id) {
-        serviceService.deleteService(id);
+    public void deleteService(@RequestBody OneService oneService) {
+        serviceService.deleteService(oneService);
     }
 
     @PutMapping("updateSelectedService")
