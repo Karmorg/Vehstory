@@ -29,7 +29,8 @@ public class VehicleService {
         List<OneService> serviceIdList = serviceRepository.serviceList();
         for (OneService s : serviceIdList
         ) {
-            SelectedService selectedService = new SelectedService(vehId, s.getId(), null, null, null, false);
+            SelectedService selectedService = new SelectedService(vehId, s.getId(),
+                    null, null, null, false);
             selectedServiceRepository.insertSelectedService(selectedService);
         }
 

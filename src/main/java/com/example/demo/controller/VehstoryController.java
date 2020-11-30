@@ -33,6 +33,7 @@ public class VehstoryController {
         clientService.createClient(client.getName(), client.geteMail());
     }
 
+    @CrossOrigin
     @PostMapping("addVehicle")
     public void createVechile(@RequestBody Vehicle vehicle) {
         vehicleService.createVehicle(vehicle);
@@ -44,9 +45,9 @@ public class VehstoryController {
         return vehicleService.getAllVehicles();
     }
 
-    @GetMapping("myVehicle")
-    public List<Vehicle> getMyVehicle(BigInteger clientID) {
-        return vehicleService.getMyVehicle(clientID);
+    @GetMapping("myVehicles")
+    public List<Vehicle> getMyVehicle(BigInteger clientId) {
+        return vehicleService.getMyVehicle(clientId);
     }
 
     @CrossOrigin
@@ -55,6 +56,7 @@ public class VehstoryController {
         vehicleService.updateOdo(newOdo);
     }
 
+    @CrossOrigin
     @PutMapping("deleteVehicle")
     public void deleteVehicle(BigInteger id) {
         vehicleService.deleteVehicle(id);
