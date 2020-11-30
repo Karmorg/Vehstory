@@ -27,13 +27,11 @@ public class VehstoryController {
     @Autowired
     private SelectedServiceService selectedServiceService;
 
-    @CrossOrigin
     @PostMapping("register")
     public void createClient(@RequestBody Client client) {
         clientService.createClient(client.getName(), client.geteMail());
     }
 
-    @CrossOrigin
     @PostMapping("addVehicle")
     public void createVechile(@RequestBody Vehicle vehicle) {
         vehicleService.createVehicle(vehicle);
@@ -44,32 +42,28 @@ public class VehstoryController {
         return vehicleService.getAllVehicles();
     }
 
-    @CrossOrigin
     @GetMapping("myVehicles")
     public List<Vehicle> getMyVehicle(BigInteger clientId) {
         return vehicleService.getMyVehicle(clientId);
     }
 
-    @CrossOrigin
     @PutMapping("updateOdo")
     public void updateOdo (@RequestBody NewOdo newOdo){
         vehicleService.updateOdo(newOdo);
     }
 
-    @CrossOrigin
     @PutMapping("deleteVehicle")
     public void deleteVehicle(BigInteger id) {
         vehicleService.deleteVehicle(id);
     }
 
-    @CrossOrigin
     @GetMapping("serviceList")
     public List getServiceList() {
         return serviceService.getServiceList();
     }
 
     @GetMapping("SelectedServices")
-    public List<SelectedService> getSelectedServices(@RequestBody BigInteger vehicleId) {
+    public List<SelectedService> getSelectedServices(BigInteger vehicleId) {
         return selectedServiceService.getSelectedService(vehicleId);
     }
 
@@ -82,7 +76,7 @@ public class VehstoryController {
     public void deleteClient(BigInteger id) {
         clientService.deleteClient(id);
     }
-    @CrossOrigin
+
     @PutMapping("deleteService")
     public void deleteService(@RequestBody OneService oneService) {
         serviceService.deleteService(oneService);
