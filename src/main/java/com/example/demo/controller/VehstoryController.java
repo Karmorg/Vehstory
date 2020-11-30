@@ -44,6 +44,7 @@ public class VehstoryController {
         return vehicleService.getAllVehicles();
     }
 
+    @CrossOrigin
     @GetMapping("myVehicles")
     public List<Vehicle> getMyVehicle(BigInteger clientId) {
         return vehicleService.getMyVehicle(clientId);
