@@ -3,6 +3,7 @@ package com.example.demo;
 import java.math.BigInteger;
 
 public class SelectedService {
+    private BigInteger id;
     private BigInteger vehicleId;
     private BigInteger serviceId;
     private String pUnit;
@@ -10,14 +11,32 @@ public class SelectedService {
     private String comment;
     private boolean active;
 
-    public SelectedService(BigInteger vehicleId, BigInteger serviceId, String pUnit,
-                           BigInteger pValue, String comment, boolean active) {
+    public SelectedService(BigInteger id, BigInteger vehicleId, BigInteger serviceId,
+                           String pUnit, BigInteger pValue, String comment, boolean active) {
+        this.id = id;
         this.vehicleId = vehicleId;
         this.serviceId = serviceId;
         this.pUnit = pUnit;
         this.pValue = pValue;
         this.comment = comment;
         this.active = active;
+    }
+
+    public SelectedService(BigInteger vehicleId, BigInteger serviceId, String pUnit, BigInteger pValue, String comment, boolean active) {
+        this.vehicleId = vehicleId;
+        this.serviceId = serviceId;
+        this.pUnit = pUnit;
+        this.pValue = pValue;
+        this.comment = comment;
+        this.active = active;
+    }
+
+    public BigInteger getId() {
+        return id;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
     }
 
     public BigInteger getVehicleId() {

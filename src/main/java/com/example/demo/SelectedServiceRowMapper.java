@@ -11,6 +11,7 @@ public class SelectedServiceRowMapper implements RowMapper {
     @Override
     public Object mapRow (ResultSet resultSet, int i) throws SQLException{
         SelectedService selectedService = new SelectedService(
+                BigInteger.valueOf (resultSet.getInt("id")),
                 BigInteger.valueOf(resultSet.getInt("vehicle_id")),
                 BigInteger.valueOf(resultSet.getInt("service_id")),
                 resultSet.getString("p_unit"),

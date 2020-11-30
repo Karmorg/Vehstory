@@ -39,7 +39,6 @@ public class VehstoryController {
         vehicleService.createVehicle(vehicle);
     }
 
-    @CrossOrigin
     @GetMapping("allVehicles")
     public List<Vehicle> getMyVehicle() {
         return vehicleService.getAllVehicles();
@@ -74,7 +73,7 @@ public class VehstoryController {
     }
 
     @GetMapping("VehicleServiceList")
-    public List<SelectedService> getVehicleServiceList(@RequestBody BigInteger vehicleId) {
+    public List<SelectedService> getVehicleServiceList(BigInteger vehicleId) {
         return selectedServiceService.getVehicleServiceList(vehicleId);
     }
 
@@ -82,7 +81,7 @@ public class VehstoryController {
     public void deleteClient(BigInteger id) {
         clientService.deleteClient(id);
     }
-
+    @CrossOrigin
     @PutMapping("deleteService")
     public void deleteService(@RequestBody OneService oneService) {
         serviceService.deleteService(oneService);
