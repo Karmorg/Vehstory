@@ -13,6 +13,9 @@ public class ServiceLog {
     private String comment;
     private Boolean active;
 
+    public ServiceLog() {
+    }
+
     public ServiceLog(Date logDate, BigInteger vehicleId, BigInteger serviceId,
                       Date serviceDate, BigInteger serviceOdo, String comment, Boolean active) {
         this.logDate = logDate;
@@ -28,55 +31,62 @@ public class ServiceLog {
         return logDate;
     }
 
-    public void setLogDate(Date logDate) {
+    public ServiceLog setLogDate(Date logDate) {
         this.logDate = logDate;
+        return this;
     }
 
     public BigInteger getVehicleId() {
         return vehicleId;
     }
 
-    public void setVehicleId(BigInteger vehicleId) {
+    public ServiceLog setVehicleId(BigInteger vehicleId) {
         this.vehicleId = vehicleId;
+        return this;
     }
 
     public BigInteger getServiceId() {
         return serviceId;
     }
 
-    public void setServiceId(BigInteger serviceId) {
+    public ServiceLog setServiceId(BigInteger serviceId) {
         this.serviceId = serviceId;
+        return this;
     }
 
     public Date getServiceDate() {
         return serviceDate;
     }
 
-    public void setServiceDate(Date serviceDate) {
+    public ServiceLog setServiceDate(Date serviceDate) {
         this.serviceDate = serviceDate;
+        return this;
     }
 
     public BigInteger getServiceOdo() {
         return serviceOdo;
     }
 
-    public void setServiceOdo(BigInteger serviceOdo) {
+    public ServiceLog setServiceOdo(BigInteger serviceOdo) {
         this.serviceOdo = serviceOdo;
+        return this;
     }
 
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
+    public ServiceLog setComment(String comment) {
         this.comment = comment;
+        return this;
     }
 
     public Boolean getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public ServiceLog setActive(Boolean active) {
         this.active = active;
+        return this;
     }
 }
