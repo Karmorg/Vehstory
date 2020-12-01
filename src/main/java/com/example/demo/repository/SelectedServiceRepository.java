@@ -17,6 +17,7 @@ public class SelectedServiceRepository {
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
 
+
     public void insertSelectedService (SelectedService selectedService){
         String sql = "INSERT INTO selected_service (vehicle_id, service_id, p_unit, p_value, comment, active) " +
                 "VALUES (:vehicleId, :serviceId, :pUnit, :pValue, :comment, :active)";
@@ -32,26 +33,24 @@ public class SelectedServiceRepository {
 
     public List<SelectedService> getSelectedService (BigInteger vehicleId){
         String sql= "SELECT id, vehicle_id, service_id, p_unit, p_value, comment, active " +
-                "FROM selected_service WHERE vehicle_id = :vehicleID AND active = :active";
+                "FROM selected_service WHERE vehicle_id = :vehicleID AND active = :active2";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("vehicleID", vehicleId);
-        paramMap.put("active", true);
-        List<SelectedService> selectedServicesList =  jdbcTemplate.query(sql,paramMap, new SelectedServiceRowMapper());
-        return  selectedServicesList;
+        paramMap.put("active2", true);
+        return  jdbcTemplate.query(sql,paramMap, new SelectedServiceRowMapper());
     }
     public List<SelectedService> getVehicleServiceList (BigInteger vehicleId){
         String sql= "SELECT id, vehicle_id, service_id, p_unit, p_value, comment, active " +
-                "FROM selected_service WHERE vehicle_id = :vehicleID";
+                "FROM selected_service WHERE vehicle_id = :vehicleID2";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("vehicleID", vehicleId);
-        List<SelectedService> selectedServicesList =  jdbcTemplate.query(sql,paramMap, new SelectedServiceRowMapper());
-        return  selectedServicesList;
+        paramMap.put("vehicleID2", vehicleId);
+        return  jdbcTemplate.query(sql,paramMap, new SelectedServiceRowMapper());
     }
     public void updateSelectedService (SelectedService selectedService){
-        String sql="UPDATE selected_service SET p_unit, p_value, comment, active WHERE vehicle_id = :vehicleID AND active = :active";
+        String sql="UPDATE selected_service SET p_unit, p_value, comment, active WHERE vehicle_id = :vehicleID3 AND active = :active3";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("vehicleID", selectedService.getVehicleId());
-        paramMap.put("active", true);
+        paramMap.put("vehicleID3", selectedService.getVehicleId());
+        paramMap.put("active3", true);
         jdbcTemplate.update(sql, paramMap);
     }
 }
