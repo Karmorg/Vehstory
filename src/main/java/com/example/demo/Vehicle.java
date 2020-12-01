@@ -16,6 +16,9 @@ public class Vehicle {
     private BigInteger kW;
     private Boolean active;
 
+    public Vehicle() {
+    }
+
     public Vehicle(BigInteger vehId, BigInteger clientId, String regNo,
                    BigInteger odo, String type, String manufactorer, String model,
                    String year, String fuel, BigInteger kW, Boolean active) {
@@ -36,87 +39,98 @@ public class Vehicle {
         return vehId;
     }
 
-    public void setVehId(BigInteger vehId) {
+    public Vehicle setVehId(BigInteger vehId) {
         this.vehId = vehId;
+        return this;
     }
 
     public BigInteger getClientId() {
         return clientId;
     }
 
-    public void setClientId(BigInteger clientId) {
+    public Vehicle setClientId(BigInteger clientId) {
         this.clientId = clientId;
+        return this;
     }
 
     public String getRegNo() {
         return regNo;
     }
 
-    public void setRegNo(String regNo) {
+    public Vehicle setRegNo(String regNo) {
         this.regNo = regNo;
+        return this;
     }
 
     public BigInteger getOdo() {
         return odo;
     }
 
-    public void setOdo(BigInteger odo) {
+    public Vehicle setOdo(BigInteger odo) {
         this.odo = odo;
+        return this;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public Vehicle setType(String type) {
         this.type = type;
+        return this;
     }
 
     public String getManufactorer() {
         return manufactorer;
     }
 
-    public void setManufactorer(String manufactorer) {
+    public Vehicle setManufactorer(String manufactorer) {
         this.manufactorer = manufactorer;
+        return this;
     }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public Vehicle setModel(String model) {
         this.model = model;
+        return this;
     }
 
     public String getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public Vehicle setYear(String year) {
         this.year = year;
+        return this;
     }
 
     public String getFuel() {
         return fuel;
     }
 
-    public void setFuel(String fuel) {
+    public Vehicle setFuel(String fuel) {
         this.fuel = fuel;
+        return this;
     }
 
     public BigInteger getkW() {
         return kW;
     }
 
-    public void setkW(BigInteger kW) {
+    public Vehicle setkW(BigInteger kW) {
         this.kW = kW;
+        return this;
     }
 
     public Boolean getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public Vehicle setActive(Boolean active) {
         this.active = active;
+        return this;
     }
 }
