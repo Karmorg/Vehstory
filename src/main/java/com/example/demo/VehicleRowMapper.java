@@ -6,22 +6,22 @@ import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class VehicleRowMapper implements RowMapper {
+public class VehicleRowMapper implements RowMapper<Vehicle> {
 
     @Override
-    public Object mapRow (ResultSet resultSet, int i) throws SQLException {
-        Vehicle vehicle = new Vehicle(
-                BigInteger.valueOf (resultSet.getInt("id")),
-                BigInteger.valueOf (resultSet.getInt("client_id")),
-                resultSet.getString("reg_no"),
-                BigInteger.valueOf (resultSet.getInt("odo")),
-                resultSet.getString("type"),
-                resultSet.getString("manufacturer"),
-                resultSet.getString("model"),
-                resultSet.getString("year"),
-                resultSet.getString("fuel"),
-                BigInteger.valueOf (resultSet.getInt("kw")),
-                resultSet.getBoolean("active"));
+    public Vehicle mapRow (ResultSet resultSet, int i) throws SQLException {
+                Vehicle vehicle = new Vehicle()
+                .setClientId(BigInteger.valueOf(resultSet.getInt("client_id")))
+                .setVehId(BigInteger.valueOf(resultSet.getInt("id")))
+                .setRegNo(resultSet.getString("reg_no"))
+                .setOdo(BigInteger.valueOf (resultSet.getInt("odo")))
+                .setType(resultSet.getString("type"))
+                .setManufactorer(resultSet.getString("manufacturer"))
+                .setModel(resultSet.getString("model"))
+                .setYear(resultSet.getString("year"))
+                .setFuel(resultSet.getString("fuel"))
+                .setkW(BigInteger.valueOf (resultSet.getInt("kw")))
+                .setActive(resultSet.getBoolean("active"));
         return vehicle;
     }
 }

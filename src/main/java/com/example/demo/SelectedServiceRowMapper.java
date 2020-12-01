@@ -6,11 +6,11 @@ import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SelectedServiceRowMapper implements RowMapper {
+public class SelectedServiceRowMapper implements RowMapper<SelectedService> {
 
     @Override
-    public Object mapRow (ResultSet resultSet, int i) throws SQLException{
-        SelectedService selectedService = new SelectedService(
+    public SelectedService mapRow (ResultSet resultSet, int i) throws SQLException{
+        return new SelectedService(
                 BigInteger.valueOf (resultSet.getInt("id")),
                 BigInteger.valueOf(resultSet.getInt("vehicle_id")),
                 BigInteger.valueOf(resultSet.getInt("service_id")),
@@ -18,7 +18,6 @@ public class SelectedServiceRowMapper implements RowMapper {
                 BigInteger.valueOf(resultSet.getInt("p_value")),
                 resultSet.getString("comment"),
                 resultSet.getBoolean("active"));
-        return selectedService;
     }
 
 }
