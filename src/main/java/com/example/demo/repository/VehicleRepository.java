@@ -73,7 +73,7 @@ public class VehicleRepository {
         String sql = "UPDATE vehicle SET odo = :odo WHERE id = :id";
         Map<String, BigInteger> paramMap = new HashMap<>();
         paramMap.put("id", newOdo.getVehId());
-        paramMap.put("odo", newOdo.getNewOdo());
+        paramMap.put("odo", newOdo.getNewOdoValue());
         jdbcTemplate.update(sql, paramMap);
     }
 }

@@ -5,11 +5,11 @@ import java.math.BigInteger;
 public class NewOdo {
 
     private BigInteger vehId;
-    private BigInteger newOdo;
+    private BigInteger newOdoValue;
 
-    public NewOdo(BigInteger vehId, BigInteger newOdo) {
+    public NewOdo(BigInteger vehId, BigInteger newOdoValue) {
         this.vehId = vehId;
-        this.newOdo = newOdo;
+        this.newOdoValue = newOdoValue;
     }
 
     public BigInteger getVehId() {
@@ -20,11 +20,11 @@ public class NewOdo {
         this.vehId = vehId;
     }
 
-    public BigInteger getNewOdo() {
-        return newOdo;
+    public BigInteger getNewOdoValue() {
+        return newOdoValue;
     }
 
-    public void setNewOdo(BigInteger newOdo) {
-        this.newOdo = newOdo;
+    public void setNewOdoValue(BigInteger newOdoValue) {
+        this.newOdoValue = newOdoValue;
     }
 }

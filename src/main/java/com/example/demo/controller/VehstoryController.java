@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
+
 
 @CrossOrigin
 @RestController
@@ -48,8 +48,8 @@ public class VehstoryController {
     }
 
     @PutMapping("updateOdo")
-    public void updateOdo (@RequestBody NewOdo newOdo){
-        vehicleService.updateOdo(newOdo);
+    public void updateOdo (@RequestBody NewOdo newOdoValue){
+        vehicleService.updateOdo(newOdoValue);
     }
 
     @PutMapping("deleteVehicle")
@@ -58,7 +58,7 @@ public class VehstoryController {
     }
 
     @GetMapping("serviceList")
-    public List getServiceList() {
+    public List<OneService> getServiceList() {
         return serviceService.getServiceList();
     }
 
