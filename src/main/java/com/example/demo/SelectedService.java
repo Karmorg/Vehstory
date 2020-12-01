@@ -31,6 +31,17 @@ public class SelectedService {
         this.active = active;
     }
 
+    public SelectedService(BigInteger id, String pUnit, BigInteger pValue, String comment, boolean active) {
+        this.id = id;
+        this.pUnit = pUnit;
+        this.pValue = pValue;
+        this.comment = comment;
+        this.active = active;
+    }
+
+    public SelectedService() {
+    }
+
     public BigInteger getId() {
         return id;
     }
@@ -43,47 +54,53 @@ public class SelectedService {
         return vehicleId;
     }
 
-    public void setVehicleId(BigInteger vehicleId) {
+    public SelectedService setVehicleId(BigInteger vehicleId) {
         this.vehicleId = vehicleId;
+        return this;
     }
 
     public BigInteger getServiceId() {
         return serviceId;
     }
 
-    public void setServiceId(BigInteger serviceId) {
+    public SelectedService setServiceId(BigInteger serviceId) {
         this.serviceId = serviceId;
+        return this;
     }
 
     public String getpUnit() {
         return pUnit;
     }
 
-    public void setpUnit(String pUnit) {
+    public SelectedService setpUnit(String pUnit) {
         this.pUnit = pUnit;
+        return this;
     }
 
     public BigInteger getpValue() {
         return pValue;
     }
 
-    public void setpValue(BigInteger pValue) {
+    public SelectedService setpValue(BigInteger pValue) {
         this.pValue = pValue;
+        return this;
     }
 
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
+    public SelectedService setComment(String comment) {
         this.comment = comment;
+        return this;
     }
 
     public boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public SelectedService setActive(boolean active) {
         this.active = active;
+        return this;
     }
 }

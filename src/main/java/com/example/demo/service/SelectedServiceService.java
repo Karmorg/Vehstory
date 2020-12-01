@@ -23,10 +23,10 @@ public class SelectedServiceService {
     }
 
     public void updateSelectedService(List<SelectedService> selectedServiceList){
-        for (SelectedService ss: selectedServiceList ) {
-            if (ss.isActive()){
-                selectedServiceRepository.updateSelectedService(ss);
-            }
-        }
+       for (SelectedService ss: selectedServiceList ) {
+           if (ss.isActive()) {
+               selectedServiceRepository.updateSelectedService(ss);
+           }
+       }
         }
 }
