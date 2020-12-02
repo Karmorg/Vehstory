@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.*;
-import com.example.demo.service.ClientService;
-import com.example.demo.service.SelectedServiceService;
-import com.example.demo.service.ServiceService;
-import com.example.demo.service.VehicleService;
+import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,14 +20,21 @@ public class VehstoryController {
     private VehicleService vehicleService;
     @Autowired
     private ServiceService serviceService;
-
     @Autowired
     private SelectedServiceService selectedServiceService;
+    @Autowired
+    private ServiceLogService serviceLogService;
 
     @PostMapping("register")
     public void createClient(@RequestBody Client client) {
         clientService.createClient(client.getName(), client.geteMail());
     }
+
+    @PutMapping("deleteClient")
+    public void deleteClient(BigInteger id) {
+        clientService.deleteClient(id);
+    }
+
 
     @PostMapping("addVehicle")
     public void createVechile(@RequestBody Vehicle vehicle) {
@@ -47,20 +51,27 @@ public class VehstoryController {
         return vehicleService.getMyVehicle(clientId);
     }
 
-    @PutMapping("updateOdo")
-    public void updateOdo (@RequestBody NewOdo newOdoValue){
-        vehicleService.updateOdo(newOdoValue);
-    }
-
     @PutMapping("deleteVehicle")
     public void deleteVehicle(BigInteger id) {
         vehicleService.deleteVehicle(id);
     }
 
+    @PutMapping("updateOdo")
+    public void updateOdo (@RequestBody NewOdo newOdoValue){
+        vehicleService.updateOdo(newOdoValue);
+    }
+
+
     @GetMapping("serviceList")
     public List<OneService> getServiceList() {
         return serviceService.getServiceList();
     }
+
+    @PutMapping("deleteService")
+    public void deleteService(@RequestBody OneService oneService) {
+        serviceService.deleteService(oneService);
+    }
+
 
     @GetMapping("SelectedServices")
     public List<SelectedService> getSelectedServices(BigInteger vehicleId) {
@@ -72,18 +83,19 @@ public class VehstoryController {
         return selectedServiceService.getVehicleServiceList(vehicleId);
     }
 
-    @PutMapping("deleteClient")
-    public void deleteClient(BigInteger id) {
-        clientService.deleteClient(id);
-    }
-
-    @PutMapping("deleteService")
-    public void deleteService(@RequestBody OneService oneService) {
-        serviceService.deleteService(oneService);
-    }
-
     @PutMapping("updateSelectedService")
     public void updateSelectedService(@RequestBody List<SelectedService> selectedServiceList) {
         selectedServiceService.updateSelectedService(selectedServiceList);
+    }
+
+
+    @PostMapping("addServiceLog")
+    public void addServiceLog (@RequestBody List<ServiceLog> serviceLogList){
+        serviceLogService.addServiceLog(serviceLogList);
+    }
+
+    @GetMapping("vehicleServiceLog")
+    public List<ServiceLog> getVehicleServiceLog(BigInteger vehicleId){
+        return serviceLogService.getVehicleServiceLog(vehicleId);
     }
 }

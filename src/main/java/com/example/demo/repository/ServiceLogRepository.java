@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -27,7 +29,16 @@ public class ServiceLogRepository {
         paramMap.put("comment", serviceLog.getComment());
         paramMap.put("active", serviceLog.getActive());
 
-//        jdbcTemplate.update(sql, paramMap, new ServiceLogRowMapper());
-
+        jdbcTemplate.update(sql, paramMap);
     }
+
+    public List<ServiceLog> getVehicleServiceLog(BigInteger vehicleId){
+        String sql = "SELECT log_date, service_id, service_date, c_odo, comment FROM service_history " +
+                "WHERE vehicle_id= :vehicleId2 AND active =:active2";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("vehicleId2",vehicleId);
+        paramMap.put("active2",true);
+        return jdbcTemplate.query(sql, paramMap, new ServiceLogRowMapper());
+    }
+
 }
