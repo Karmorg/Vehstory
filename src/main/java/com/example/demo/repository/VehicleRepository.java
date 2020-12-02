@@ -4,6 +4,7 @@ import com.example.demo.NewOdo;
 import com.example.demo.Vehicle;
 import com.example.demo.VehicleRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContextException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -40,10 +41,14 @@ public class VehicleRepository {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         SqlParameterSource paramSource = new MapSqlParameterSource(paramMap);
         jdbcTemplate.update(sql, paramSource, keyHolder);
-        Long vehId = (Long) keyHolder.getKeys().get("id");
-        BigInteger vehicleId= BigInteger.valueOf(Math.toIntExact(vehId));
-        return vehicleId;
-
+        try {
+            Long vehId = (Long) keyHolder.getKeys().get("id");
+            return BigInteger.valueOf(Math.toIntExact(vehId));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        throw new ApplicationContextException("SQL andmebaasi nummeratsiooni viga");
     }
 
     public List<Vehicle> getMyVehicles(BigInteger clientID) {

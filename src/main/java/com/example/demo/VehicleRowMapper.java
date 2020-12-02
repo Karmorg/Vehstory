@@ -10,7 +10,7 @@ public class VehicleRowMapper implements RowMapper<Vehicle> {
 
     @Override
     public Vehicle mapRow (ResultSet resultSet, int i) throws SQLException {
-                Vehicle vehicle = new Vehicle()
+                return new Vehicle()
                 .setClientId(BigInteger.valueOf(resultSet.getInt("client_id")))
                 .setVehId(BigInteger.valueOf(resultSet.getInt("id")))
                 .setRegNo(resultSet.getString("reg_no"))
@@ -22,6 +22,5 @@ public class VehicleRowMapper implements RowMapper<Vehicle> {
                 .setFuel(resultSet.getString("fuel"))
                 .setkW(BigInteger.valueOf (resultSet.getInt("kw")))
                 .setActive(resultSet.getBoolean("active"));
-        return vehicle;
     }
 }

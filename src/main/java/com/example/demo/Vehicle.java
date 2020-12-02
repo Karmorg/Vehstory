@@ -16,25 +16,6 @@ public class Vehicle {
     private BigInteger kW;
     private Boolean active;
 
-    public Vehicle() {
-    }
-
-    public Vehicle(BigInteger vehId, BigInteger clientId, String regNo,
-                   BigInteger odo, String type, String manufactorer, String model,
-                   String year, String fuel, BigInteger kW, Boolean active) {
-        this.vehId = vehId;
-        this.clientId = clientId;
-        this.regNo = regNo;
-        this.odo = odo;
-        this.type = type;
-        this.manufactorer = manufactorer;
-        this.model = model;
-        this.year = year;
-        this.fuel = fuel;
-        this.kW = kW;
-        this.active = active;
-    }
-
     public BigInteger getVehId() {
         return vehId;
     }
