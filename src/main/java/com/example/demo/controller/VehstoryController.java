@@ -83,6 +83,11 @@ public class VehstoryController {
         return selectedServiceService.getVehicleServiceList(vehicleId);
     }
 
+    @GetMapping("VehicleServiceListWithServiceName")
+    public List<NameForSelectedServiceWeb> getVehicleServiceListWithServiceName(BigInteger vehicleId){
+        return selectedServiceService.getVehicleServiceListWithServiceName(vehicleId);
+    }
+
     @PutMapping("updateSelectedService")
     public void updateSelectedService(@RequestBody List<SelectedService> selectedServiceList) {
         selectedServiceService.updateSelectedService(selectedServiceList);

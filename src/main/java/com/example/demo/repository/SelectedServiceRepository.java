@@ -1,5 +1,7 @@
 package com.example.demo.repository;
 
+import com.example.demo.NameForSelectedServiceWeb;
+import com.example.demo.NameForSelectedServiceWebRowMapper;
 import com.example.demo.SelectedServiceRowMapper;
 import com.example.demo.SelectedService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +56,11 @@ public class SelectedServiceRepository {
         paramMap.put("comment",selectedService.getComment());
         paramMap.put("active", selectedService.isActive());
         jdbcTemplate.update(sql, paramMap);
+    }
+    public List<NameForSelectedServiceWeb> getVehicleServiceListWithServiceName (BigInteger vehicleId){
+        String sql="SELECT*FROM service_list sl JOIN selected_service ss ON sl.id=ss.service_id WHERE vehicle_id= :vehicleId";
+        Map<String, Object> paramMap=new HashMap<>();
+        paramMap.put("vehicleId", vehicleId);
+        return jdbcTemplate.query(sql, paramMap, new NameForSelectedServiceWebRowMapper());
     }
 }

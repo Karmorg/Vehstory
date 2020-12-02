@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.NameForSelectedServiceWeb;
 import com.example.demo.SelectedService;
 import com.example.demo.repository.SelectedServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class SelectedServiceService {
     public List<com.example.demo.SelectedService> getVehicleServiceList(BigInteger vehicleId){
         return selectedServiceRepository.getVehicleServiceList(vehicleId);
     }
+    public List<NameForSelectedServiceWeb> getVehicleServiceListWithServiceName(BigInteger vehicleId){
+        return selectedServiceRepository.getVehicleServiceListWithServiceName(vehicleId);
+    }
 
     public void updateSelectedService(List<SelectedService> selectedServiceList){
        for (SelectedService ss: selectedServiceList ) {
@@ -28,5 +32,5 @@ public class SelectedServiceService {
                selectedServiceRepository.updateSelectedService(ss);
            }
        }
-        }
+    }
 }
