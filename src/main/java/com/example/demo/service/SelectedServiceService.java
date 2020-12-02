@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.NameForSelectedServiceWeb;
 import com.example.demo.SelectedService;
+import com.example.demo.VehicleSelectedServiceDashboard;
 import com.example.demo.repository.SelectedServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,9 @@ public class SelectedServiceService {
                selectedServiceRepository.updateSelectedService(ss);
            }
        }
+    }
+
+    public List<VehicleSelectedServiceDashboard> getServicesToDashboard(BigInteger vehicleId){
+        return selectedServiceRepository.getServicesToDashboard(vehicleId);
     }
 }
