@@ -78,9 +78,9 @@ public class VehstoryController {
         return selectedServiceService.getSelectedService(vehicleId);
     }
 
-    @GetMapping("VehicleServiceList")
-    public List<SelectedService> getVehicleServiceList(BigInteger vehicleId) {
-        return selectedServiceService.getVehicleServiceList(vehicleId);
+    @GetMapping("VehicleSelectedServiceListDashboard")
+    public List<VehicleSelectedServiceDashboard> getVehicleServiceList(BigInteger vehicleId) {
+        return selectedServiceService.getServicesToDashboard(vehicleId);
     }
 
     @GetMapping("VehicleServiceListWithServiceName")

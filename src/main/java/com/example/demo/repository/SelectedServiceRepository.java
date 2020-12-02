@@ -1,20 +1,21 @@
 package com.example.demo.repository;
 
-import com.example.demo.NameForSelectedServiceWeb;
-import com.example.demo.NameForSelectedServiceWebRowMapper;
-import com.example.demo.SelectedServiceRowMapper;
-import com.example.demo.SelectedService;
+import com.example.demo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Repository
 public class SelectedServiceRepository {
+
 
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
@@ -62,5 +63,25 @@ public class SelectedServiceRepository {
         Map<String, Object> paramMap=new HashMap<>();
         paramMap.put("vehicleId", vehicleId);
         return jdbcTemplate.query(sql, paramMap, new NameForSelectedServiceWebRowMapper());
+    }
+    public List<VehicleSelectedServiceDashboard> getServicesToDashboard(BigInteger vehicleId){
+        String sql="SELECT ss.service_id, ss.p_unit, ss.p_value, sl.service, sh.service_date, sh.c_odo, sh.comment " +
+                "FROM selected_service ss LEFT JOIN service_list sl ON ss.service_id=sl.id " +
+                "LEFT JOIN service_history sh ON ss.service_id = sh.service_id AND sh.vehicle_id = :vehicleId " +
+                "WHERE ss.vehicle_id= :vehicleId";
+        Map<String, BigInteger> paramMap = new HashMap<>();
+        paramMap.put("vehicleId", vehicleId);
+        return  jdbcTemplate.query(sql, paramMap, new RowMapper<VehicleSelectedServiceDashboard>() {
+            @Override
+            public VehicleSelectedServiceDashboard mapRow(ResultSet resultSet, int i) throws SQLException {
+                return new VehicleSelectedServiceDashboard()
+                        .setServiceName(resultSet.getString("service"))
+                        .setpUnit(resultSet.getString("p_unit"))
+                        .setpValue(BigInteger.valueOf(resultSet.getInt("p_value")))
+                        .setLastSDate(resultSet.getDate("service_date"))
+                        .setLastSOdo(BigInteger.valueOf(resultSet.getInt("c_odo")))
+                        .setComment(resultSet.getString("comment"));
+            }
+        });
     }
 }
