@@ -58,7 +58,7 @@ public class SelectedServiceRepository {
         jdbcTemplate.update(sql, paramMap);
     }
     public List<NameForSelectedServiceWeb> getVehicleServiceListWithServiceName (BigInteger vehicleId){
-        String sql="SELECT*FROM service_list sl JOIN selected_service ss ON sl.id=ss.service_id WHERE vehicle_id= :vehicleId";
+        String sql="SELECT * FROM service_list sl JOIN selected_service ss ON sl.id=ss.service_id WHERE vehicle_id= :vehicleId";
         Map<String, Object> paramMap=new HashMap<>();
         paramMap.put("vehicleId", vehicleId);
         return jdbcTemplate.query(sql, paramMap, new NameForSelectedServiceWebRowMapper());
