@@ -19,19 +19,21 @@ public class ClientService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public boolean validate (String eMail, String password){
-        String encodedPassword="";
-        return passwordEncoder.matches(password, encodedPassword);
-    }
+    public String validateClient (Client client){
+        String encodedPassword = clientRepository.validateClient(client.geteMail());
+        if(passwordEncoder.matches(client.getPassword(), encodedPassword)){
+            
+            return "Kõik ok";
+        }else{
+            return "Proovi uuesti";
+        }
 
+    }
 
     public void createClient(Client client) {
         String encodedPassword=passwordEncoder.encode(client.getPassword());
         clientRepository.createClient(client, encodedPassword);
     }
-
-
-
 
     public void deleteClient(BigInteger id) {
         clientRepository.updateClientStatus(id);

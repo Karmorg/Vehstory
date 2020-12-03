@@ -30,6 +30,11 @@ public class VehstoryController {
         clientService.createClient(client);
     }
 
+    @PostMapping("login")
+    public String validateClient(@RequestBody Client client){
+       return clientService.validateClient(client);
+    }
+
     @PutMapping("deleteClient")
     public void deleteClient(BigInteger id) {
         clientService.deleteClient(id);

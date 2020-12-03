@@ -15,7 +15,7 @@ public class ClientRepository {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void createClient (Client client, String encodedPassword){
+    public void createClient(Client client, String encodedPassword) {
         String sql = "INSERT INTO client (name, e_mail, active, pw) VALUES (:name, :eMail, :active, :password)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("name", client.getName());
@@ -25,12 +25,21 @@ public class ClientRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public void updateClientStatus(BigInteger id){
+    public String validateClient(String eMail) {
+       String sql = "Select pw from client WHERE e_mail=:eMail";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("eMail", eMail);
+        String password = jdbcTemplate.queryForObject(sql, paramMap, String.class);
+        return password;
+    }
+
+
+    public void updateClientStatus(BigInteger id) {
         String sql = "UPDATE client SET active=:false WHERE id=:clientID";
-        Map<String, Object> paramMap=new HashMap<>();
+        Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("clientID", id);
         paramMap.put("false", false);
-        jdbcTemplate.update(sql,paramMap);
+        jdbcTemplate.update(sql, paramMap);
     }
 
 
