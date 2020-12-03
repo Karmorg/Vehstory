@@ -27,7 +27,12 @@ public class VehstoryController {
 
     @PostMapping("register")
     public void createClient(@RequestBody Client client) {
-        clientService.createClient(client.getName(), client.geteMail());
+        clientService.createClient(client);
+    }
+
+    @PostMapping ("login")
+    public String login (@RequestBody Client client){
+        return clientService.login(client);
     }
 
     @PutMapping("deleteClient")

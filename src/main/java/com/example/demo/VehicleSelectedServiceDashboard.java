@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class VehicleSelectedServiceDashboard {
 
+    private BigInteger serviceId;
     private String serviceName;
     private String pUnit;
     private BigInteger pValue;
@@ -12,9 +13,21 @@ public class VehicleSelectedServiceDashboard {
     private BigInteger lastSOdo;
     private Date nextSDate;
     private BigInteger nextSOdo;
+    private Date serviceDate;
+    private BigInteger serviceOdo;
     private String comment;
+    private Date logDate;
 
     public VehicleSelectedServiceDashboard() {
+    }
+
+    public BigInteger getServiceId() {
+        return serviceId;
+    }
+
+    public VehicleSelectedServiceDashboard setServiceId(BigInteger serviceId) {
+        this.serviceId = serviceId;
+        return this;
     }
 
     public String getServiceName() {
@@ -80,12 +93,39 @@ public class VehicleSelectedServiceDashboard {
         return this;
     }
 
+    public Date getServiceDate() {
+        return serviceDate;
+    }
+
+    public VehicleSelectedServiceDashboard setServiceDate(Date serviceDate) {
+        this.serviceDate = serviceDate;
+        return this;
+    }
+
+    public BigInteger getServiceOdo() {
+        return serviceOdo;
+    }
+
+    public VehicleSelectedServiceDashboard setServiceOdo(BigInteger serviceOdo) {
+        this.serviceOdo = serviceOdo;
+        return this;
+    }
+
     public String getComment() {
         return comment;
     }
 
     public VehicleSelectedServiceDashboard setComment(String comment) {
         this.comment = comment;
+        return this;
+    }
+
+    public Date getLogDate() {
+        return logDate;
+    }
+
+    public VehicleSelectedServiceDashboard setLogDate(Date logDate) {
+        this.logDate = logDate;
         return this;
     }
 }

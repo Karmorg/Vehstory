@@ -75,6 +75,7 @@ public class SelectedServiceRepository {
             @Override
             public VehicleSelectedServiceDashboard mapRow(ResultSet resultSet, int i) throws SQLException {
                 return new VehicleSelectedServiceDashboard()
+                        .setServiceId(BigInteger.valueOf(resultSet.getInt("service_id")))
                         .setServiceName(resultSet.getString("service"))
                         .setpUnit(resultSet.getString("p_unit"))
                         .setpValue(BigInteger.valueOf(resultSet.getInt("p_value")))
