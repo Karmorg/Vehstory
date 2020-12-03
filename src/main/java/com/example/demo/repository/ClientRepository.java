@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,12 +15,13 @@ public class ClientRepository {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void createClient (String name, String eMail){
-        String sql = "INSERT INTO client (name, e_mail, active) VALUES (:name, :eMail, :active)";
+    public void createClient (Client client, String encodedPassword){
+        String sql = "INSERT INTO client (name, e_mail, active, pw) VALUES (:name, :eMail, :active, :password)";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("name", name);
-        paramMap.put("eMail", eMail);
+        paramMap.put("name", client.getName());
+        paramMap.put("eMail", client.geteMail());
         paramMap.put("active", true);
+        paramMap.put("password", encodedPassword);
         jdbcTemplate.update(sql, paramMap);
     }
 

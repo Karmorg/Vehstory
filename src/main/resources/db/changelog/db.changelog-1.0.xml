@@ -138,6 +138,13 @@
     <changeSet id="4" author="Kadri">
         <renameColumn tableName="vehicle" oldColumnName="reg_No" newColumnName="reg_no"/>
     </changeSet>
+    <changeSet id="5" author="Kadri">
+        <addColumn tableName="client">
+            <column name="pw" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
 
 
 </databaseChangeLog> 
