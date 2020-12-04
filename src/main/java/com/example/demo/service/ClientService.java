@@ -22,12 +22,10 @@ public class ClientService {
     public String validateClient (Client client){
         String encodedPassword = clientRepository.validateClient(client.geteMail());
         if(passwordEncoder.matches(client.getPassword(), encodedPassword)){
-            
             return "Kõik ok";
         }else{
             return "Proovi uuesti";
         }
-
     }
 
     public void createClient(Client client) {

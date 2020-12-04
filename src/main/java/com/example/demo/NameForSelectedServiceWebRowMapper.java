@@ -17,6 +17,6 @@ public class NameForSelectedServiceWebRowMapper implements RowMapper<NameForSele
                 .setpUnit(resultSet.getString("p_unit"))
                 .setpValue(BigInteger.valueOf(resultSet.getInt("p_value")))
                 .setComment(resultSet.getString("comment"))
-                .setActive(resultSet.getBoolean(10));
+                .setActive(resultSet.getBoolean("active"));
     }
 }
