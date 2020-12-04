@@ -2,12 +2,16 @@ package com.example.demo.service;
 
 import com.example.demo.Client;
 import com.example.demo.repository.ClientRepository;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.Date;
 
 @Service
 public class ClientService {
@@ -29,7 +33,14 @@ public class ClientService {
 
     public String login(Client client) {
         if (validate(client.getName(), client.getPassword())){
-            return "Hästi";
+
+            JwtBuilder builder = Jwts.builder()
+                .setExpiration(new Date(now.getTime()+1000*60*60*24))
+                .setIssuedAt(new Date())
+                .setIssuer("vehstory_login_service")
+                .signWith(SignatureAlgorithm.HS256, "secret")
+                .claim("name", client.getName());
+            return  builder.compact();
         } else {
             return "Vale parool või e-mail";
         }
@@ -43,5 +54,11 @@ public class ClientService {
     public String savePassword(String password){
         return passwordEncoder.encode(password);
     }
+
+    private Date now = new Date();
+
+
+
+
 
 }
