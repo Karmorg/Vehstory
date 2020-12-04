@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,7 +21,15 @@ public class ServiceLogService {
 
         for (ServiceLog sl: serviceLogList
              ) {
-            serviceLogRepository.addServiceLog(sl);
+            if (sl.getServiceOdo() != null || sl.getServiceDate() != null){
+                if (sl.getServiceDate() == null){
+                    sl.setServiceDate(new Date());
+                }
+                sl.setLogDate(new Date());
+                sl.setActive(true);
+                serviceLogRepository.addServiceLog(sl);
+            }
+
         }
     }
     public List<ServiceLog> getVehicleServiceLog(BigInteger vehicleId){

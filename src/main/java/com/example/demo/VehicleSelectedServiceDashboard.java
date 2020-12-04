@@ -5,6 +5,8 @@ import java.util.Date;
 
 public class VehicleSelectedServiceDashboard {
 
+    private BigInteger serviceId;
+    private BigInteger vehicleId;
     private String serviceName;
     private String pUnit;
     private BigInteger pValue;
@@ -15,6 +17,24 @@ public class VehicleSelectedServiceDashboard {
     private String comment;
 
     public VehicleSelectedServiceDashboard() {
+    }
+
+    public BigInteger getServiceId() {
+        return serviceId;
+    }
+
+    public VehicleSelectedServiceDashboard setServiceId(BigInteger serviceId) {
+        this.serviceId = serviceId;
+        return this;
+    }
+
+    public BigInteger getVehicleId() {
+        return vehicleId;
+    }
+
+    public VehicleSelectedServiceDashboard setVehicleId(BigInteger vehicleId) {
+        this.vehicleId = vehicleId;
+        return this;
     }
 
     public String getServiceName() {

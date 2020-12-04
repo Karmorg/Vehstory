@@ -65,16 +65,19 @@ public class SelectedServiceRepository {
         return jdbcTemplate.query(sql, paramMap, new NameForSelectedServiceWebRowMapper());
     }
     public List<VehicleSelectedServiceDashboard> getServicesToDashboard(BigInteger vehicleId){
-        String sql="SELECT ss.service_id, ss.p_unit, ss.p_value, sl.service, sh.service_date, sh.c_odo, sh.comment " +
+        String sql="SELECT ss.service_id , ss.p_unit, ss.p_value, sl.service, sh.service_date, sh.c_odo, sh.comment " +
                 "FROM selected_service ss LEFT JOIN service_list sl ON ss.service_id=sl.id " +
                 "LEFT JOIN service_history sh ON ss.service_id = sh.service_id AND sh.vehicle_id = :vehicleId " +
                 "WHERE ss.vehicle_id= :vehicleId";
+
         Map<String, BigInteger> paramMap = new HashMap<>();
         paramMap.put("vehicleId", vehicleId);
         return  jdbcTemplate.query(sql, paramMap, new RowMapper<VehicleSelectedServiceDashboard>() {
             @Override
             public VehicleSelectedServiceDashboard mapRow(ResultSet resultSet, int i) throws SQLException {
                 return new VehicleSelectedServiceDashboard()
+                        .setVehicleId(vehicleId)
+                        .setServiceId(BigInteger.valueOf(resultSet.getInt("service_id")))
                         .setServiceName(resultSet.getString("service"))
                         .setpUnit(resultSet.getString("p_unit"))
                         .setpValue(BigInteger.valueOf(resultSet.getInt("p_value")))
