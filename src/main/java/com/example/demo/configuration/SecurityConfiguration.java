@@ -16,11 +16,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/addVehicle/**").authenticated()
-                .antMatchers("/register").permitAll()
+                .antMatchers("/myVehicles/**").authenticated()
+                .antMatchers("/register/**").permitAll()
+                .antMatchers("/login").permitAll()
                 .and()
                 .addFilterBefore(new JwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-//        httpSecurity.csrf().disable();
+        httpSecurity.csrf().disable();
         httpSecurity.cors();
     }
 
