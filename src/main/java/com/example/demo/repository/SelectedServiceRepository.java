@@ -67,21 +67,27 @@ public class SelectedServiceRepository {
         return jdbcTemplate.query(sql, paramMap, new NameForSelectedServiceWebRowMapper());
     }
     public List<VehicleSelectedServiceDashboard> getServicesToDashboard(BigInteger vehicleId){
-        String sql="SELECT ss.service_id, ss.p_unit, ss.p_value, sl.service, sh.service_date, sh.c_odo, sh.comment " +
+        String sql="SELECT ss.service_id , ss.p_unit, ss.p_value, ss.comment AS i_comment, sl.service, sh.service_date, sh.c_odo, sh.comment " +
                 "FROM selected_service ss LEFT JOIN service_list sl ON ss.service_id=sl.id " +
-                "LEFT JOIN service_history sh ON ss.service_id = sh.service_id AND sh.vehicle_id = :vehicleId " +
-                "WHERE ss.vehicle_id= :vehicleId";
+                "LEFT JOIN (SELECT sh1.* from service_history sh1 JOIN " +
+                "(SELECT vehicle_id, service_id, max(service_date) as max_date FROM service_history GROUP BY vehicle_id, service_id) sh2 " +
+                "ON sh1.vehicle_id = sh2.vehicle_id and sh1.service_id = sh2.service_id and sh1.service_date = sh2.max_date) " +
+                "sh ON ss.service_id = sh.service_id WHERE ss.active = true";
+
         Map<String, BigInteger> paramMap = new HashMap<>();
         paramMap.put("vehicleId", vehicleId);
         return  jdbcTemplate.query(sql, paramMap, new RowMapper<VehicleSelectedServiceDashboard>() {
             @Override
             public VehicleSelectedServiceDashboard mapRow(ResultSet resultSet, int i) throws SQLException {
                 return new VehicleSelectedServiceDashboard()
+                        .setVehicleId(vehicleId)
+                        .setServiceId(BigInteger.valueOf(resultSet.getInt("service_id")))
                         .setServiceName(resultSet.getString("service"))
                         .setpUnit(resultSet.getString("p_unit"))
                         .setpValue(BigInteger.valueOf(resultSet.getInt("p_value")))
                         .setLastSDate(resultSet.getDate("service_date"))
                         .setLastSOdo(BigInteger.valueOf(resultSet.getInt("c_odo")))
+                        .setiComment(resultSet.getString("i_comment"))
                         .setComment(resultSet.getString("comment"));
             }
         });
