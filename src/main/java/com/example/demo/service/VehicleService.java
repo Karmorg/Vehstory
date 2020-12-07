@@ -1,9 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.NewOdo;
-import com.example.demo.OneService;
-import com.example.demo.SelectedService;
-import com.example.demo.Vehicle;
+import com.example.demo.*;
 import com.example.demo.repository.SelectedServiceRepository;
 import com.example.demo.repository.ServiceRepository;
 import com.example.demo.repository.VehicleRepository;
@@ -51,5 +48,9 @@ public class VehicleService {
 
     public void updateOdo(NewOdo newOdo) {
         vehicleRepository.updateOdo(newOdo);
+    }
+
+    public List<OneVehicle> oneVehicle(BigInteger vehicleId) {
+        return  vehicleRepository.oneVehicle(vehicleId);
     }
 }

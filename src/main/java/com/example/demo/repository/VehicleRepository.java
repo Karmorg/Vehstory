@@ -1,8 +1,6 @@
 package com.example.demo.repository;
 
-import com.example.demo.NewOdo;
-import com.example.demo.Vehicle;
-import com.example.demo.VehicleRowMapper;
+import com.example.demo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -80,5 +78,12 @@ public class VehicleRepository {
         paramMap.put("id", newOdo.getVehId());
         paramMap.put("odo", newOdo.getNewOdoValue());
         jdbcTemplate.update(sql, paramMap);
+    }
+
+    public List<OneVehicle> oneVehicle(BigInteger vehicleId) {
+        String sql="Select id, reg_no, manufacturer, model from vehicle Where id=:vehicleId";
+        Map<String, Object> paraMap=new HashMap<>();
+        paraMap.put("vehicleId", vehicleId);
+        return jdbcTemplate.query(sql, paraMap, new OneVehicleRowMapper());
     }
 }

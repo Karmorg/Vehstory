@@ -56,6 +56,11 @@ public class VehstoryController {
         return vehicleService.getMyVehicle(clientId);
     }
 
+    @GetMapping("oneVehicle")
+    public List<OneVehicle> oneVehicle(BigInteger vehicleId) {
+        return vehicleService.oneVehicle(vehicleId);
+    }
+
     @PutMapping("deleteVehicle")
     public void deleteVehicle(BigInteger id) {
         vehicleService.deleteVehicle(id);
