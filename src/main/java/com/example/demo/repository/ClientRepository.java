@@ -15,17 +15,18 @@ public class ClientRepository {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void createClient(Client client, String encodedPassword) {
-        String sql = "INSERT INTO client (name, e_mail, active, pw) VALUES (:name, :eMail, :active, :password)";
+    public void createClient (Client client){
+        String sql = "INSERT INTO client (name, e_mail, pw, active) " +
+                "VALUES (:name, :eMail, :password, :active)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("name", client.getName());
         paramMap.put("eMail", client.geteMail());
+        paramMap.put("password", client.getPassword());
         paramMap.put("active", true);
-        paramMap.put("password", encodedPassword);
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public String validateClient(String eMail) {
+    public String getPassword(String eMail) {
        String sql = "Select pw from client WHERE e_mail=:eMail";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("eMail", eMail);

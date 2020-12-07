@@ -61,6 +61,7 @@ public class VehstoryController {
         return vehicleService.getMyVehicle(clientId);
     }
 
+    @CrossOrigin
     @GetMapping("oneVehicle")
     public List<OneVehicle> oneVehicle(BigInteger vehicleId) {
         return vehicleService.oneVehicle(vehicleId);
