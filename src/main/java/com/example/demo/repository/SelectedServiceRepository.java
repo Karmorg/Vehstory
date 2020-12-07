@@ -67,8 +67,10 @@ public class SelectedServiceRepository {
     public List<VehicleSelectedServiceDashboard> getServicesToDashboard(BigInteger vehicleId){
         String sql="SELECT ss.service_id , ss.p_unit, ss.p_value, sl.service, sh.service_date, sh.c_odo, sh.comment " +
                 "FROM selected_service ss LEFT JOIN service_list sl ON ss.service_id=sl.id " +
-                "LEFT JOIN service_history sh ON ss.service_id = sh.service_id AND sh.vehicle_id = :vehicleId " +
-                "WHERE ss.vehicle_id= :vehicleId";
+                "LEFT JOIN (SELECT sh1.* from service_history sh1 JOIN " +
+                "(SELECT vehicle_id, service_id, max(service_date) as max_date FROM service_history GROUP BY vehicle_id, service_id) sh2 " +
+                "ON sh1.vehicle_id = sh2.vehicle_id and sh1.service_id = sh2.service_id and sh1.service_date = sh2.max_date) " +
+                "sh ON ss.service_id = sh.service_id WHERE ss.active = true";
 
         Map<String, BigInteger> paramMap = new HashMap<>();
         paramMap.put("vehicleId", vehicleId);
