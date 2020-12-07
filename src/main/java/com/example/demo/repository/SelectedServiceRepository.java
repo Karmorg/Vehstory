@@ -65,7 +65,7 @@ public class SelectedServiceRepository {
         return jdbcTemplate.query(sql, paramMap, new NameForSelectedServiceWebRowMapper());
     }
     public List<VehicleSelectedServiceDashboard> getServicesToDashboard(BigInteger vehicleId){
-        String sql="SELECT ss.service_id , ss.p_unit, ss.p_value, sl.service, sh.service_date, sh.c_odo, sh.comment " +
+        String sql="SELECT ss.service_id , ss.p_unit, ss.p_value, ss.comment AS i_comment, sl.service, sh.service_date, sh.c_odo, sh.comment " +
                 "FROM selected_service ss LEFT JOIN service_list sl ON ss.service_id=sl.id " +
                 "LEFT JOIN (SELECT sh1.* from service_history sh1 JOIN " +
                 "(SELECT vehicle_id, service_id, max(service_date) as max_date FROM service_history GROUP BY vehicle_id, service_id) sh2 " +
@@ -85,6 +85,7 @@ public class SelectedServiceRepository {
                         .setpValue(BigInteger.valueOf(resultSet.getInt("p_value")))
                         .setLastSDate(resultSet.getDate("service_date"))
                         .setLastSOdo(BigInteger.valueOf(resultSet.getInt("c_odo")))
+                        .setiComment(resultSet.getString("i_comment"))
                         .setComment(resultSet.getString("comment"));
             }
         });

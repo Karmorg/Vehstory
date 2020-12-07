@@ -15,6 +15,7 @@ public class VehicleSelectedServiceDashboard {
     private Date nextSDate;
     private BigInteger nextSOdo;
     private String comment;
+    private String iComment;
 
     public VehicleSelectedServiceDashboard() {
     }
@@ -106,6 +107,15 @@ public class VehicleSelectedServiceDashboard {
 
     public VehicleSelectedServiceDashboard setComment(String comment) {
         this.comment = comment;
+        return this;
+    }
+
+    public String getiComment() {
+        return iComment;
+    }
+
+    public VehicleSelectedServiceDashboard setiComment(String iComment) {
+        this.iComment = iComment;
         return this;
     }
 }
