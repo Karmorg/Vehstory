@@ -16,7 +16,7 @@ public class ClientRepository {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public void createClient (Client client){
-        String sql = "INSERT INTO client (name, e_mail, password, active) " +
+        String sql = "INSERT INTO client (name, e_mail, pw, active) " +
                 "VALUES (:name, :eMail, :password, :active)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("name", client.getName());
@@ -35,7 +35,7 @@ public class ClientRepository {
     }
 
     public String getPassword(String userName) {
-        String sql = "SELECT password FROM client WHERE name= :userName";
+        String sql = "SELECT pw FROM client WHERE name= :userName";
         Map<String, String> paramMap = new HashMap<>();
         paramMap.put("userName", userName);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);

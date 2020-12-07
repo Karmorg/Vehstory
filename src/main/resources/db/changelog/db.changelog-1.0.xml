@@ -140,7 +140,7 @@
     </changeSet>
     <changeSet id="4" author="Karmo">
         <addColumn tableName="client">
-            <column name="password" type="TEXT">
+            <column name="pw" type="TEXT" defaultValue="-">
             <constraints nullable="false"/>
             </column>
         </addColumn>
