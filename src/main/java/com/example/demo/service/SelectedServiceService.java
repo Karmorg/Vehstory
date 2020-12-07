@@ -43,6 +43,7 @@ public class SelectedServiceService {
         List<VehicleSelectedServiceDashboard> vssdList = selectedServiceRepository.getServicesToDashboard(vehicleId);
         for (VehicleSelectedServiceDashboard vssd: vssdList
              ) {
+
             if (vssd.getpUnit().equals("km")){
                 vssd.setNextSOdo(vssd.getLastSOdo().add(vssd.getpValue()));
             }
@@ -56,7 +57,6 @@ public class SelectedServiceService {
                     calendar.add(Calendar.YEAR,addYear.intValue());
                     vssd.setNextSDate(calendar.getTime());
                 }
-
             }
             if (vssd.getLastSDate() == null){
                 vssd.setComment(vssd.getiComment());
