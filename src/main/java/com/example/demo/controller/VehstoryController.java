@@ -25,13 +25,13 @@ public class VehstoryController {
     private ServiceLogService serviceLogService;
 
     @CrossOrigin
-    @PostMapping("register")
+    @PostMapping("public/register")
     public void createClient(@RequestBody Client client) {
         clientService.createClient(client);
     }
 
     @CrossOrigin
-    @PostMapping ("login")
+    @PostMapping ("public/login")
     public String login (@RequestBody Client client){
         return clientService.login(client);
     }
@@ -44,37 +44,37 @@ public class VehstoryController {
 
 
     @CrossOrigin
-    @PostMapping("addVehicle")
+    @PostMapping("client/addVehicle")
     public void createVechile(@RequestBody Vehicle vehicle) {
         vehicleService.createVehicle(vehicle);
     }
 
     @CrossOrigin
-    @GetMapping("allVehicles")
+    @GetMapping("public/allVehicles")
     public List<Vehicle> getMyVehicle() {
         return vehicleService.getAllVehicles();
     }
 
     @CrossOrigin
-    @GetMapping("myVehicles")
+    @GetMapping("client/myVehicles")
     public List<Vehicle> getMyVehicle(BigInteger clientId) {
         return vehicleService.getMyVehicle(clientId);
     }
 
     @CrossOrigin
-    @GetMapping("oneVehicle")
+    @GetMapping("client/oneVehicle")
     public List<OneVehicle> oneVehicle(BigInteger vehicleId) {
         return vehicleService.oneVehicle(vehicleId);
     }
 
     @CrossOrigin
-    @PutMapping("deleteVehicle")
+    @PutMapping("client/deleteVehicle")
     public void deleteVehicle(BigInteger id) {
         vehicleService.deleteVehicle(id);
     }
 
     @CrossOrigin
-    @PutMapping("updateOdo")
+    @PutMapping("client/updateOdo")
     public void updateOdo (@RequestBody NewOdo newOdoValue){
         vehicleService.updateOdo(newOdoValue);
     }
@@ -99,25 +99,25 @@ public class VehstoryController {
     }
 
     @CrossOrigin
-    @GetMapping("VehicleSelectedServiceListDashboard")
+    @GetMapping("client/VehicleSelectedServiceListDashboard")
     public List<VehicleSelectedServiceDashboard> getVehicleServiceList(BigInteger vehicleId) {
         return selectedServiceService.getServicesToDashboard(vehicleId);
     }
 
     @CrossOrigin
-    @GetMapping("VehicleServiceListWithServiceName")
+    @GetMapping("client/VehicleServiceListWithServiceName")
     public List<NameForSelectedServiceWeb> getVehicleServiceListWithServiceName(BigInteger vehicleId){
         return selectedServiceService.getVehicleServiceListWithServiceName(vehicleId);
     }
 
     @CrossOrigin
-    @PutMapping("updateSelectedService")
+    @PutMapping("client/updateSelectedService")
     public void updateSelectedService(@RequestBody List<SelectedService> selectedServiceList) {
         selectedServiceService.updateSelectedService(selectedServiceList);
     }
 
     @CrossOrigin
-    @PostMapping("addServiceLog")
+    @PostMapping("client/addServiceLog")
     public void addServiceLog (@RequestBody List<ServiceLog> serviceLogList){
         serviceLogService.addServiceLog(serviceLogList);
     }
