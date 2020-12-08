@@ -26,7 +26,7 @@ public class SelectedServiceRepository {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("vehicleId", selectedService.getVehicleId());
         paramMap.put("serviceId", selectedService.getServiceId());
-        paramMap.put("pUnit", selectedService.getpUnit());
+        paramMap.put("pUnit", "määramata");
         paramMap.put("pValue", selectedService.getpValue());
         paramMap.put("comment", selectedService.getComment());
         paramMap.put("active", selectedService.isActive());
