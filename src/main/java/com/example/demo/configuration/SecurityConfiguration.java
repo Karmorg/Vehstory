@@ -16,7 +16,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-//                .antMatchers("/myVehicles/**").authenticated()
+                .antMatchers("/myVehicles/**").authenticated()
                 .antMatchers("/register/**").permitAll()
                 .antMatchers("/login").permitAll()
                 .and()
