@@ -33,11 +33,11 @@ public class ServiceLogRepository {
     }
 
     public List<ServiceLog> getVehicleServiceLog(BigInteger vehicleId){
-        String sql = "SELECT log_date, service_id, service_date, c_odo, comment FROM service_history " +
-                "WHERE vehicle_id= :vehicleId2 AND active =:active2";
+        String sql = "SELECT sh.id, sh.log_date, sh.vehicle_id, sl.service, sh.service_date, sh.c_odo, sh.comment" +
+                " FROM service_history sh JOIN service_list sl ON sl.id=sh.service_id" +
+                " WHERE vehicle_id=:vehicleId";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("vehicleId2",vehicleId);
-        paramMap.put("active2",true);
+        paramMap.put("vehicleId",vehicleId);
         return jdbcTemplate.query(sql, paramMap, new ServiceLogRowMapper());
     }
 
