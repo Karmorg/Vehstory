@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.Client;
+import com.example.demo.configuration.MyUser;
 import com.example.demo.repository.ClientRepository;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -38,6 +39,7 @@ public class ClientService {
                 .setIssuedAt(new Date())
                 .setIssuer("vehstory_login_service")
                 .signWith(SignatureAlgorithm.HS256, "secret")
+                .claim("clientId", client.getClientId())
                 .claim("name", client.getName());
             return  builder.compact();
         } else {

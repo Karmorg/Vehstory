@@ -15,6 +15,7 @@ import org.springframework.web.filter.GenericFilterBean;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class JwtTokenFilter extends GenericFilterBean {
         Claims claims = Jwts.parser().setSigningKey("secret").parseClaimsJws(token).getBody();
         List<GrantedAuthority>grantedAuthorityList = new ArrayList<GrantedAuthority>();
         grantedAuthorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
-        UserDetails userDetails = new User((String) claims.get("name"),"",grantedAuthorityList);
+        UserDetails userDetails = new MyUser((String) claims.get("name"),"",(BigInteger) claims.get("clientId"), grantedAuthorityList);
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 

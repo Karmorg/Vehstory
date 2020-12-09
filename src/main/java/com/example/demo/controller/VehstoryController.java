@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.*;
+import com.example.demo.configuration.MyUser;
 import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.security.Principal;
 import java.util.List;
 
 
@@ -38,10 +41,10 @@ public class VehstoryController {
 
     @CrossOrigin
     @PutMapping("deleteClient")
-    public void deleteClient(BigInteger id) {
-        clientService.deleteClient(id);
+    public void deleteClient(Principal principal, BigInteger id) {
+        MyUser myUser = (MyUser) principal;
+        clientService.deleteClient(myUser.getClientId());
     }
-
 
     @CrossOrigin
     @PostMapping("client/addVehicle")
@@ -57,9 +60,17 @@ public class VehstoryController {
 
     @CrossOrigin
     @GetMapping("client/myVehicles")
-    public List<Vehicle> getMyVehicle(BigInteger clientId) {
-        return vehicleService.getMyVehicle(clientId);
+    public List<Vehicle> getMyVehicle(Principal principal) {
+        MyUser myUser = (MyUser) principal;
+
+        return vehicleService.getMyVehicle(myUser.getClientId());
     }
+
+//    @CrossOrigin
+//    @GetMapping("client/myVehicles")
+//    public List<Vehicle> getMyVehicle(BigInteger clientId) {
+//        return vehicleService.getMyVehicle(clientId);
+//    }
 
     @CrossOrigin
     @GetMapping("client/oneVehicle")
@@ -75,6 +86,7 @@ public class VehstoryController {
 
     @CrossOrigin
     @PutMapping("client/updateOdo")
+
     public void updateOdo (@RequestBody NewOdo newOdoValue){
         vehicleService.updateOdo(newOdoValue);
     }
