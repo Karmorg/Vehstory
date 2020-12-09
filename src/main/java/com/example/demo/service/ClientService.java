@@ -39,12 +39,15 @@ public class ClientService {
                 .setIssuedAt(new Date())
                 .setIssuer("vehstory_login_service")
                 .signWith(SignatureAlgorithm.HS256, "secret")
-                .claim("clientId", client.getClientId())
+                .claim("clientId", getClientId(client))
                 .claim("name", client.getName());
             return  builder.compact();
         } else {
             return "Vale parool või e-mail";
         }
+    }
+    public BigInteger getClientId (Client client){
+        return clientRepository.getClientId(client);
     }
 
     public boolean validate (String eMail , String rawPassword){

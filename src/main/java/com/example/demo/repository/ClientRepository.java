@@ -44,4 +44,10 @@ public class ClientRepository {
     }
 
 
+    public BigInteger getClientId(Client client) {
+        String sql = "SELECT id FROM client WHERE e_mail= :eMail";
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("eMail", client.geteMail());
+        return jdbcTemplate.queryForObject(sql, paramMap, BigInteger.class);
+    }
 }

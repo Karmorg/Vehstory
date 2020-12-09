@@ -8,6 +8,9 @@ public class Client {
     private String password;
     private BigInteger clientId;
 
+    public Client() {
+    }
+
     public Client(String name, String eMail, String password) {
         this.name = name;
         this.eMail = eMail;

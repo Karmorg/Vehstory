@@ -58,19 +58,19 @@ public class VehstoryController {
         return vehicleService.getAllVehicles();
     }
 
-    @CrossOrigin
-    @GetMapping("client/myVehicles")
-    public List<Vehicle> getMyVehicle(Principal principal) {
-        MyUser myUser = (MyUser) principal;
-
-        return vehicleService.getMyVehicle(myUser.getClientId());
-    }
-
 //    @CrossOrigin
 //    @GetMapping("client/myVehicles")
-//    public List<Vehicle> getMyVehicle(BigInteger clientId) {
-//        return vehicleService.getMyVehicle(clientId);
+//    public List<Vehicle> getMyVehicle(Principal principal) {
+//        MyUser myUser = (MyUser) principal;
+//
+//        return vehicleService.getMyVehicle(myUser.getClientId());
 //    }
+
+    @CrossOrigin
+    @GetMapping("client/myVehicles")
+    public List<Vehicle> getMyVehicle(BigInteger clientId) {
+        return vehicleService.getMyVehicle(clientId);
+    }
 
     @CrossOrigin
     @GetMapping("client/oneVehicle")
