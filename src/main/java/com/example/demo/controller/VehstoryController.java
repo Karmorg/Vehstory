@@ -43,7 +43,8 @@ public class VehstoryController {
     @PutMapping("deleteClient")
     public void deleteClient(Principal principal, BigInteger id) {
         MyUser myUser = (MyUser) principal;
-        clientService.deleteClient(myUser.getClientId());
+        BigInteger clientIdBI = BigInteger.valueOf(myUser.getClientId());
+        clientService.deleteClient(clientIdBI);
     }
 
     @CrossOrigin
@@ -58,19 +59,19 @@ public class VehstoryController {
         return vehicleService.getAllVehicles();
     }
 
-//    @CrossOrigin
-//    @GetMapping("client/myVehicles")
-//    public List<Vehicle> getMyVehicle(Principal principal) {
-//        MyUser myUser = (MyUser) principal;
-//
-//        return vehicleService.getMyVehicle(myUser.getClientId());
-//    }
-
     @CrossOrigin
     @GetMapping("client/myVehicles")
-    public List<Vehicle> getMyVehicle(BigInteger clientId) {
-        return vehicleService.getMyVehicle(clientId);
+    public List<Vehicle> getMyVehicle(Authentication authentication) {
+        MyUser myUser = (MyUser) authentication.getPrincipal();
+        BigInteger clientIdBI2 = BigInteger.valueOf(myUser.getClientId());
+        return vehicleService.getMyVehicle(clientIdBI2);
     }
+
+//    @CrossOrigin
+//    @GetMapping("client/myVehicles")
+//    public List<Vehicle> getMyVehicle(BigInteger clientId) {
+//        return vehicleService.getMyVehicle(clientId);
+//    }
 
     @CrossOrigin
     @GetMapping("client/oneVehicle")
