@@ -123,7 +123,7 @@ public class VehstoryController {
     }
 
     @CrossOrigin
-    @GetMapping("vehicleServiceLog")
+    @GetMapping("client/vehicleServiceLog")
     public List<ServiceLog> getVehicleServiceLog(BigInteger vehicleId){
         return serviceLogService.getVehicleServiceLog(vehicleId);
     }

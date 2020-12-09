@@ -8,6 +8,7 @@ public class ServiceLog {
     private Date logDate;
     private BigInteger vehicleId;
     private BigInteger serviceId;
+    private String serviceName;
     private Date serviceDate;
     private BigInteger serviceOdo;
     private String comment;
@@ -16,15 +17,15 @@ public class ServiceLog {
     public ServiceLog() {
     }
 
-    public ServiceLog(Date logDate, BigInteger vehicleId, BigInteger serviceId,
-                      Date serviceDate, BigInteger serviceOdo, String comment, Boolean active) {
+    public ServiceLog(Date logDate, BigInteger vehicleId,
+                      String serviceName, Date serviceDate, BigInteger serviceOdo,
+                      String comment) {
         this.logDate = logDate;
         this.vehicleId = vehicleId;
-        this.serviceId = serviceId;
+        this.serviceName = serviceName;
         this.serviceDate = serviceDate;
         this.serviceOdo = serviceOdo;
         this.comment = comment;
-        this.active = active;
     }
 
     public Date getLogDate() {
@@ -51,6 +52,15 @@ public class ServiceLog {
 
     public ServiceLog setServiceId(BigInteger serviceId) {
         this.serviceId = serviceId;
+        return this;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public ServiceLog setServiceName(String serviceName) {
+        this.serviceName = serviceName;
         return this;
     }
 
