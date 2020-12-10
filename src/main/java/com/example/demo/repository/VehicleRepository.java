@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
 import com.example.demo.*;
-import com.example.demo.configuration.MyUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -9,7 +8,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
@@ -42,6 +40,7 @@ public class VehicleRepository {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         SqlParameterSource paramSource = new MapSqlParameterSource(paramMap);
         jdbcTemplate.update(sql, paramSource, keyHolder);
+
         try {
             Long vehId = (Long) keyHolder.getKeys().get("id");
             return BigInteger.valueOf(Math.toIntExact(vehId));

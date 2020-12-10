@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
-import java.time.LocalDateTime;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -47,17 +45,13 @@ public class SelectedServiceService {
             if (vssd.getpUnit().equals("km")){
                 vssd.setNextSOdo(vssd.getLastSOdo().add(vssd.getpValue()));
             }
-
-            if (vssd.getpUnit().equals("aasta")){
-                if (vssd.getLastSDate() != null){
+                if (vssd.getpUnit().equals("aasta") && vssd.getLastSDate() != null){
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(vssd.getLastSDate());
                     BigInteger addYear = vssd.getpValue();
-                    addYear.intValue();
                     calendar.add(Calendar.YEAR,addYear.intValue());
                     vssd.setNextSDate(calendar.getTime());
                 }
-            }
             if (vssd.getLastSDate() == null){
                 vssd.setComment(vssd.getiComment());
             }

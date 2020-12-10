@@ -68,7 +68,4 @@ public class VehicleService {
         return vehicleRepository.oneVehicle(vehicleId);
     }
 
-
-    public void createVehicle(NewVehicle newVehicle) {
-    }
 }

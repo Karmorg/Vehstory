@@ -16,10 +16,7 @@ public class VehicleSelectedServiceDashboard {
     private BigInteger nextSOdo;
     private String comment;
     private String iComment;
-
-    public VehicleSelectedServiceDashboard() {
-    }
-
+    
     public BigInteger getServiceId() {
         return serviceId;
     }

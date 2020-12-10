@@ -16,9 +16,6 @@ public class Vehicle {
     private BigInteger kW;
     private Boolean active;
 
-    public Vehicle() {
-    }
-
     public BigInteger getVehId() {
         return vehId;
     }

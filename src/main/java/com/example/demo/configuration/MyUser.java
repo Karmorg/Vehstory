@@ -3,8 +3,8 @@ package com.example.demo.configuration;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Objects;
 
 public class MyUser extends User {
     private Integer clientId;
@@ -20,5 +20,19 @@ public class MyUser extends User {
     public MyUser setClientId(Integer clientId) {
         this.clientId = clientId;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        MyUser myUser = (MyUser) o;
+        return Objects.equals(clientId, myUser.clientId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), clientId);
     }
 }

@@ -8,13 +8,6 @@ public class OneVehicle {
     private String model;
     private String regNo;
 
-    public OneVehicle() {
-        this.id = id;
-        this.manufacturer = manufacturer;
-        this.model = model;
-        this.regNo = regNo;
-    }
-
     public BigInteger getId() {
         return id;
     }
