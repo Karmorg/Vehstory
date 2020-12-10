@@ -21,8 +21,22 @@ public class VehicleService {
     private ServiceRepository serviceRepository;
 
 
-    public void createVehicle(Vehicle vehicle) {
+    public void createVehicle(NewVehicle newVehicle, BigInteger clientIdBI1) {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setRegNo(newVehicle.getRegNo());
+        vehicle.setModel(newVehicle.getModel());
+        vehicle.setClientId(clientIdBI1);
+        vehicle.setManufactorer(newVehicle.getManufactorer());
+        vehicle.setFuel(newVehicle.getFuel());
+        vehicle.setkW(newVehicle.getkW());
+        vehicle.setOdo(newVehicle.getOdo());
+        vehicle.setType(newVehicle.getType());
+        vehicle.setYear(newVehicle.getYear());
+        vehicle.setActive(newVehicle.getActive());
+
         BigInteger vehId = vehicleRepository.createVehicle(vehicle);
+
+
         List<OneService> serviceIdList = serviceRepository.serviceList();
         for (OneService s : serviceIdList
         ) {
@@ -51,6 +65,10 @@ public class VehicleService {
     }
 
     public List<OneVehicle> oneVehicle(BigInteger vehicleId) {
-        return  vehicleRepository.oneVehicle(vehicleId);
+        return vehicleRepository.oneVehicle(vehicleId);
+    }
+
+
+    public void createVehicle(NewVehicle newVehicle) {
     }
 }

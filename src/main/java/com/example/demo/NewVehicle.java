@@ -2,10 +2,9 @@ package com.example.demo;
 
 import java.math.BigInteger;
 
-public class Vehicle {
+public class NewVehicle {
 
-    private  BigInteger vehId;
-    private BigInteger clientId;
+    private BigInteger vehId;
     private String regNo;
     private BigInteger odo;
     private String type;
@@ -16,24 +15,13 @@ public class Vehicle {
     private BigInteger kW;
     private Boolean active;
 
-    public Vehicle() {
-    }
 
     public BigInteger getVehId() {
         return vehId;
     }
 
-    public Vehicle setVehId(BigInteger vehId) {
+    public NewVehicle setVehId(BigInteger vehId) {
         this.vehId = vehId;
-        return this;
-    }
-
-    public BigInteger getClientId() {
-        return clientId;
-    }
-
-    public Vehicle setClientId(BigInteger clientId) {
-        this.clientId = clientId;
         return this;
     }
 
@@ -41,7 +29,7 @@ public class Vehicle {
         return regNo;
     }
 
-    public Vehicle setRegNo(String regNo) {
+    public NewVehicle setRegNo(String regNo) {
         this.regNo = regNo;
         return this;
     }
@@ -50,7 +38,7 @@ public class Vehicle {
         return odo;
     }
 
-    public Vehicle setOdo(BigInteger odo) {
+    public NewVehicle setOdo(BigInteger odo) {
         this.odo = odo;
         return this;
     }
@@ -59,7 +47,7 @@ public class Vehicle {
         return type;
     }
 
-    public Vehicle setType(String type) {
+    public NewVehicle setType(String type) {
         this.type = type;
         return this;
     }
@@ -68,7 +56,7 @@ public class Vehicle {
         return manufactorer;
     }
 
-    public Vehicle setManufactorer(String manufactorer) {
+    public NewVehicle setManufactorer(String manufactorer) {
         this.manufactorer = manufactorer;
         return this;
     }
@@ -77,7 +65,7 @@ public class Vehicle {
         return model;
     }
 
-    public Vehicle setModel(String model) {
+    public NewVehicle setModel(String model) {
         this.model = model;
         return this;
     }
@@ -86,7 +74,7 @@ public class Vehicle {
         return year;
     }
 
-    public Vehicle setYear(String year) {
+    public NewVehicle setYear(String year) {
         this.year = year;
         return this;
     }
@@ -95,7 +83,7 @@ public class Vehicle {
         return fuel;
     }
 
-    public Vehicle setFuel(String fuel) {
+    public NewVehicle setFuel(String fuel) {
         this.fuel = fuel;
         return this;
     }
@@ -104,7 +92,7 @@ public class Vehicle {
         return kW;
     }
 
-    public Vehicle setkW(BigInteger kW) {
+    public NewVehicle setkW(BigInteger kW) {
         this.kW = kW;
         return this;
     }
@@ -113,7 +101,7 @@ public class Vehicle {
         return active;
     }
 
-    public Vehicle setActive(Boolean active) {
+    public NewVehicle setActive(Boolean active) {
         this.active = active;
         return this;
     }

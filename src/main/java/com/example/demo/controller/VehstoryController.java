@@ -49,8 +49,10 @@ public class VehstoryController {
 
     @CrossOrigin
     @PostMapping("client/addVehicle")
-    public void createVechile(@RequestBody Vehicle vehicle) {
-        vehicleService.createVehicle(vehicle);
+    public void createVechile(Authentication authentication, @RequestBody NewVehicle newVehicle) {
+        MyUser myUser = (MyUser) authentication.getPrincipal();
+        BigInteger clientIdBI1 = BigInteger.valueOf(myUser.getClientId());
+        vehicleService.createVehicle(newVehicle,clientIdBI1);
     }
 
     @CrossOrigin

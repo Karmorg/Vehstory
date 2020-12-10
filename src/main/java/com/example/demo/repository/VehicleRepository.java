@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.*;
+import com.example.demo.configuration.MyUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -8,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
@@ -21,21 +23,22 @@ public class VehicleRepository {
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
 
-    public BigInteger createVehicle(Vehicle vehicle) {
+    public BigInteger createVehicle(Vehicle newVehicle) {
         String sql = "INSERT INTO vehicle (client_id, reg_no, odo, type, manufacturer," +
                 "model, year, fuel, kw, active) VALUES (:client_id, :reg_no, :odo, :type, " +
                 ":manufacturer, :model, :year, :fuel, :kw, :active )";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("client_id", vehicle.getClientId());
-        paramMap.put("reg_no", vehicle.getRegNo());
-        paramMap.put("odo", vehicle.getOdo());
-        paramMap.put("type", vehicle.getType());
-        paramMap.put("manufacturer", vehicle.getManufactorer());
-        paramMap.put("model", vehicle.getModel());
-        paramMap.put("year", vehicle.getYear());
-        paramMap.put("fuel", vehicle.getFuel());
-        paramMap.put("kw", vehicle.getkW());
-        paramMap.put("active", vehicle.getActive());
+
+        paramMap.put("client_id", newVehicle.getClientId());
+        paramMap.put("reg_no", newVehicle.getRegNo());
+        paramMap.put("odo", newVehicle.getOdo());
+        paramMap.put("type", newVehicle.getType());
+        paramMap.put("manufacturer", newVehicle.getManufactorer());
+        paramMap.put("model", newVehicle.getModel());
+        paramMap.put("year", newVehicle.getYear());
+        paramMap.put("fuel", newVehicle.getFuel());
+        paramMap.put("kw", newVehicle.getkW());
+        paramMap.put("active", newVehicle.getActive());
         KeyHolder keyHolder = new GeneratedKeyHolder();
         SqlParameterSource paramSource = new MapSqlParameterSource(paramMap);
         jdbcTemplate.update(sql, paramSource, keyHolder);
@@ -86,4 +89,6 @@ public class VehicleRepository {
         paraMap.put("vehicleId", vehicleId);
         return jdbcTemplate.query(sql, paraMap, new OneVehicleRowMapper());
     }
+
+
 }
