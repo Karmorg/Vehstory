@@ -27,11 +27,10 @@ public class ClientRepository {
     }
 
     public String getPassword(String eMail) {
-       String sql = "Select pw from client WHERE e_mail=:eMail";
+       String sql = "Select pw from client WHERE e_mail=:eMail2";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("eMail", eMail);
-        String password = jdbcTemplate.queryForObject(sql, paramMap, String.class);
-        return password;
+        paramMap.put("eMail2", eMail);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
 
 
@@ -45,9 +44,9 @@ public class ClientRepository {
 
 
     public BigInteger getClientId(Client client) {
-        String sql = "SELECT id FROM client WHERE e_mail= :eMail";
+        String sql = "SELECT id FROM client WHERE e_mail= :eMail3";
         Map<String, String> paramMap = new HashMap<>();
-        paramMap.put("eMail", client.geteMail());
+        paramMap.put("eMail3", client.geteMail());
         return jdbcTemplate.queryForObject(sql, paramMap, BigInteger.class);
     }
 }
