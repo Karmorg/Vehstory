@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.Client;
 import com.example.demo.configuration.MyUser;
+import com.example.demo.exception.ApplicationException;
 import com.example.demo.repository.ClientRepository;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -43,7 +44,7 @@ public class ClientService {
                 .claim("name", client.getName());
             return  builder.compact();
         } else {
-            return "Vale parool või e-mail";
+            throw new ApplicationException("Vale e-mail või parool. PROOVI UUESTI!");
         }
     }
     public BigInteger getClientId (Client client){
