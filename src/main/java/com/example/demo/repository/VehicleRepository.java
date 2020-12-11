@@ -1,8 +1,8 @@
 package com.example.demo.repository;
 
 import com.example.demo.*;
+import com.example.demo.exception.ApplicationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContextException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -41,14 +41,12 @@ public class VehicleRepository {
         SqlParameterSource paramSource = new MapSqlParameterSource(paramMap);
         jdbcTemplate.update(sql, paramSource, keyHolder);
 
-        try {
-            Long vehId = (Long) keyHolder.getKeys().get("id");
-            return BigInteger.valueOf(Math.toIntExact(vehId));
+        Map<String, Object> keyMap = keyHolder.getKeys();
+        if (keyMap == null) {
+            throw new ApplicationException("viga");
         }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        throw new ApplicationContextException("SQL andmebaasi nummeratsiooni viga");
+        Long vehId = (Long) keyMap.get("id");
+        return BigInteger.valueOf(Math.toIntExact(vehId));
     }
 
     public List<Vehicle> getMyVehicles(BigInteger clientID) {
@@ -74,7 +72,7 @@ public class VehicleRepository {
         return jdbcTemplate.query(sql, new VehicleRowMapper());
     }
 
-    public void updateOdo(NewOdo newOdo){
+    public void updateOdo(NewOdo newOdo) {
         String sql = "UPDATE vehicle SET odo = :odo WHERE id = :id";
         Map<String, BigInteger> paramMap = new HashMap<>();
         paramMap.put("id", newOdo.getVehId());
@@ -83,8 +81,8 @@ public class VehicleRepository {
     }
 
     public List<OneVehicle> oneVehicle(BigInteger vehicleId) {
-        String sql="Select id, reg_no, manufacturer, model from vehicle Where id=:vehicleId";
-        Map<String, Object> paraMap=new HashMap<>();
+        String sql = "Select id, reg_no, manufacturer, model from vehicle Where id=:vehicleId";
+        Map<String, Object> paraMap = new HashMap<>();
         paraMap.put("vehicleId", vehicleId);
         return jdbcTemplate.query(sql, paraMap, new OneVehicleRowMapper());
     }

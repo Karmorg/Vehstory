@@ -27,11 +27,10 @@ public class ClientRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public List allEmails (){
+    public List<String> allEmails (){
         String sql="Select e_mail from client";
         Map<String, Object> paramMap= new HashMap<>();
-        List allEmails = jdbcTemplate.queryForList(sql, paramMap, String.class);
-        return allEmails;
+        return jdbcTemplate.queryForList(sql, paramMap, String.class);
     }
 
     public String getPassword(String eMail) {

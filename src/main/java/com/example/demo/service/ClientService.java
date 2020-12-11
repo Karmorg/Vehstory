@@ -24,7 +24,7 @@ public class ClientService {
     private PasswordEncoder passwordEncoder;
 
     public void createClient(Client client) {
-        List list = clientRepository.allEmails();
+        List<String> list = clientRepository.allEmails();
         if (list.contains(client.geteMail())) {
             throw new ApplicationException("Selline e-mail on juba olemas");
         }else {
