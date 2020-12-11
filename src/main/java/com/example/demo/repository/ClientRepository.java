@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -24,6 +25,13 @@ public class ClientRepository {
         paramMap.put("password", client.getPassword());
         paramMap.put("active", true);
         jdbcTemplate.update(sql, paramMap);
+    }
+
+    public List allEmails (){
+        String sql="Select e_mail from client";
+        Map<String, Object> paramMap= new HashMap<>();
+        List allEmails = jdbcTemplate.queryForList(sql, paramMap, String.class);
+        return allEmails;
     }
 
     public String getPassword(String eMail) {
