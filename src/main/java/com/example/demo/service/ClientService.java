@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ClientService {
@@ -23,8 +24,13 @@ public class ClientService {
     private PasswordEncoder passwordEncoder;
 
     public void createClient(Client client) {
-        client.setPassword(savePassword(client.getPassword()));
-        clientRepository.createClient(client);
+        List list = clientRepository.allEmails();
+        if (list.contains(client.geteMail())) {
+            throw new ApplicationException("Selline e-mail on juba olemas");
+        }else {
+            client.setPassword(savePassword(client.getPassword()));
+            clientRepository.createClient(client);
+        }
     }
 
     public void deleteClient(BigInteger id) {
