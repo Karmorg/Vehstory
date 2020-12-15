@@ -146,5 +146,9 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="6" author="Karmo">
+        <dropNotNullConstraint tableName="client" columnName="name"/>
+    </changeSet>
+
 
 </databaseChangeLog> 

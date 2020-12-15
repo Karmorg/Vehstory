@@ -17,10 +17,10 @@ public class ClientRepository {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public void createClient (Client client){
-        String sql = "INSERT INTO client (name, e_mail, pw, active) " +
-                "VALUES (:name, :eMail, :password, :active)";
+        String sql = "INSERT INTO client (e_mail, pw, active) " +
+                "VALUES (:eMail, :password, :active)";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("name", client.getName());
+//        paramMap.put("name", client.getName());
         paramMap.put("eMail", client.geteMail());
         paramMap.put("password", client.getPassword());
         paramMap.put("active", true);

@@ -38,19 +38,28 @@ public class ClientService {
     }
 
     public String login(Client client) {
-        if (validate(client.geteMail(), client.getPassword())){
+        if (client.getPassword() != null && client.geteMail() != null){
+            if (emailExists(client.geteMail())){
+                if (validate(client.geteMail(), client.getPassword())){
 
-            JwtBuilder builder = Jwts.builder()
-                .setExpiration(new Date(now.getTime()+1000*60*60*24))
-                .setIssuedAt(new Date())
-                .setIssuer("vehstory_login_service")
-                .signWith(SignatureAlgorithm.HS256, "secret")
-                .claim("clientId", getClientId(client))
-                .claim("name", client.getName());
-            return  builder.compact();
+                    JwtBuilder builder = Jwts.builder()
+                            .setExpiration(new Date(now.getTime()+1000*60*60*24*365))
+                            .setIssuedAt(new Date())
+                            .setIssuer("vehstory_login_service")
+                            .signWith(SignatureAlgorithm.HS256, "secret")
+                            .claim("clientId", getClientId(client))
+                            .claim("eMail", client.geteMail());
+                    return  builder.compact();
+                } else {
+                    throw new ApplicationException("Vale e-mail või parool.");
+                }
+            } else {
+                throw new ApplicationException("E-mail ei ole registreeritud");
+            }
         } else {
-            throw new ApplicationException("Vale e-mail või parool. PROOVI UUESTI!");
+            throw new ApplicationException("Palun täida mõlemad väljad");
         }
+
     }
     public BigInteger getClientId (Client client){
         return clientRepository.getClientId(client);
@@ -63,6 +72,10 @@ public class ClientService {
 
     public String savePassword(String password){
         return passwordEncoder.encode(password);
+    }
+
+    public Boolean emailExists (String eMailToCheck){
+        return clientRepository.allEmails().contains(eMailToCheck);
     }
 
     private Date now = new Date();
