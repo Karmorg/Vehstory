@@ -81,7 +81,7 @@ public class VehicleRepository {
     }
 
     public List<OneVehicle> oneVehicle(BigInteger vehicleId) {
-        String sql = "Select id, reg_no, manufacturer, model from vehicle Where id=:vehicleId";
+        String sql = "Select id, reg_no, odo, manufacturer, model from vehicle Where id=:vehicleId";
         Map<String, Object> paraMap = new HashMap<>();
         paraMap.put("vehicleId", vehicleId);
         return jdbcTemplate.query(sql, paraMap, new OneVehicleRowMapper());

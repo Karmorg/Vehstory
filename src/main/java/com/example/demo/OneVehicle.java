@@ -7,6 +7,7 @@ public class OneVehicle {
     private String manufacturer;
     private String model;
     private String regNo;
+    private BigInteger odo;
 
     public BigInteger getId() {
         return id;
@@ -41,6 +42,15 @@ public class OneVehicle {
 
     public OneVehicle setRegNo(String regNo) {
         this.regNo = regNo;
+        return this;
+    }
+
+    public BigInteger getOdo() {
+        return odo;
+    }
+
+    public OneVehicle setOdo(BigInteger odo) {
+        this.odo = odo;
         return this;
     }
 }

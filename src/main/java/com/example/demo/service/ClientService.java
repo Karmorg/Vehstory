@@ -27,7 +27,7 @@ public class ClientService {
         if (client.getPassword() != null && client.geteMail() != null){
             List<String> list = clientRepository.allEmails();
             if (list.contains(client.geteMail())) {
-                throw new ApplicationException("Selline e-mail on juba olemas");
+                throw new ApplicationException("Sisestatud e-mail on juba registreeritud");
             }else {
                 client.setPassword(savePassword(client.getPassword()));
                 clientRepository.createClient(client);

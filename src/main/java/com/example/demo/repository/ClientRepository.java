@@ -20,7 +20,6 @@ public class ClientRepository {
         String sql = "INSERT INTO client (e_mail, pw, active) " +
                 "VALUES (:eMail, :password, :active)";
         Map<String, Object> paramMap = new HashMap<>();
-//        paramMap.put("name", client.getName());
         paramMap.put("eMail", client.geteMail());
         paramMap.put("password", client.getPassword());
         paramMap.put("active", true);

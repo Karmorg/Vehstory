@@ -14,7 +14,8 @@ public class OneVehicleRowMapper implements RowMapper<OneVehicle> {
                 .setId(BigInteger.valueOf(resultSet.getInt("id")))
                 .setManufacturer(resultSet.getString("manufacturer"))
                 .setModel(resultSet.getString("model"))
-                .setRegNo(resultSet.getString("reg_no"));
+                .setRegNo(resultSet.getString("reg_no"))
+                .setOdo(BigInteger.valueOf(resultSet.getInt("odo")));
     }
 
 
