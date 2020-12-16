@@ -12,7 +12,7 @@ public class VehicleSelectedServiceDashboard {
     private BigInteger pValue;
     private Date lastSDate;
     private BigInteger lastSOdo;
-    private Date nextSDate;
+    private String nextSDate;
     private BigInteger nextSOdo;
     private String comment;
     private String iComment;
@@ -80,11 +80,11 @@ public class VehicleSelectedServiceDashboard {
         return this;
     }
 
-    public Date getNextSDate() {
+    public String getNextSDate() {
         return nextSDate;
     }
 
-    public VehicleSelectedServiceDashboard setNextSDate(Date nextSDate) {
+    public VehicleSelectedServiceDashboard setNextSDate(String nextSDate) {
         this.nextSDate = nextSDate;
         return this;
     }

@@ -56,7 +56,7 @@ public class VehstoryController {
     }
 
     @CrossOrigin
-    @GetMapping("public/allVehicles")
+    @GetMapping("client/allVehicles")
     public List<Vehicle> getMyVehicle() {
         return vehicleService.getAllVehicles();
     }
